@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME DEPOT Juba | Electronics & Perfumes</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -15,13 +13,13 @@
     <header>
         <nav class="navbar">
             <div class="container">
-                <a href="#home" class="nav-logo">HOME DEPOT</a>
+                <a href="index.html" class="nav-logo">HOME DEPOT</a>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -32,171 +30,46 @@
         </nav>
     </header>
 
-    <!-- Home Section with Video Background -->
-    <section id="home" class="home-section">
+    <!-- Hero Section -->
+    <section class="hero-section">
         <div class="video-background">
             <video autoplay muted loop id="bgVideo">
-                <!-- Replace with your video file -->
                 <source src="https://assets.codepen.io/3361033/4147485-uhd_3840_2160_25fps.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="dark-overlay"></div>
         </div>
-        <div class="home-content">
+        <div class="hero-content">
             <h1 class="fade-in">HOME DEPOT Juba</h1>
-            <p class="fade-in delay-1">Electronics & Perfumes from Dubai – Fast Delivery in Juba</p>
-            <a href="https://wa.me/211981184646" target="_blank" class="cta-button fade-in delay-2">Order Now via WhatsApp</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="section-content slide-up">
-                <h2>About Us</h2>
-                <p>We are HOME DEPOT based in Juba, South Sudan. We offer electronic products and perfumes directly from Dubai at wholesale and retail prices. Free delivery within Juba in 30–40 minutes.</p>
+            <p class="fade-in delay-1">Premium Electronics & Perfumes from Dubai</p>
+            <p class="fade-in delay-2">Fast Delivery in Juba - 30-40 Minutes</p>
+            <div class="hero-buttons fade-in delay-3">
+                <a href="products.html" class="cta-button primary">Shop Now</a>
+                <a href="https://wa.me/211981184646" target="_blank" class="cta-button secondary">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="products-section">
+    <!-- Features Section -->
+    <section class="features-section">
         <div class="container">
-            <h2>Our Products</h2>
-            <div class="category-tabs">
-                <button class="tab-button active" data-category="all">All Products</button>
-                <button class="tab-button" data-category="electronics">Electronics</button>
-                <button class="tab-button" data-category="perfumes-men">Men's Perfumes</button>
-                <button class="tab-button" data-category="perfumes-women">Women's Perfumes</button>
-            </div>
-            <div class="products-grid">
-                <!-- Product Card 1 -->
-                <div class="product-card" data-category="electronics">
-                    <div class="card-image">
-                        <!-- Replace with your image -->
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.1&auto=format&fit=crop&w=500&q=80" alt="Smart Watch">
-                    </div>
-                    <div class="card-content">
-                        <h3>Smart Watch Series 5</h3>
-                        <p>Advanced smartwatch with health monitoring features.</p>
-                        <div class="price">
-                            <span class="usd">$199.99</span>
-                            <span class="ssp">SSP 250,000</span>
-                        </div>
-                        <button class="view-more">View More</button>
-                    </div>
-                </div>
-                
-                <!-- Product Card 2 -->
-                <div class="product-card" data-category="perfumes-men">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1590736968-fc5d5dd60c8a?ixlib=rb-4.0.1&auto=format&fit=crop&w=500&q=80" alt="Men's Perfume">
-                    </div>
-                    <div class="card-content">
-                        <h3>Bleu de Chanel</h3>
-                        <p>Woody aromatic fragrance for men with fresh notes.</p>
-                        <div class="price">
-                            <span class="usd">$85.00</span>
-                            <span class="ssp">SSP 120,000</span>
-                        </div>
-                        <button class="view-more">View More</button>
-                    </div>
-                </div>
-                
-                <!-- Product Card 3 -->
-                <div class="product-card" data-category="perfumes-women">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1547887536-4f0e3d4f5a7a?ixlib=rb-4.0.1&auto=format&fit=crop&w=500&q=80" alt="Women's Perfume">
-                    </div>
-                    <div class="card-content">
-                        <h3>Chanel Coco Mademoiselle</h3>
-                        <p>Fresh, oriental fragrance with modern sophistication.</p>
-                        <div class="price">
-                            <span class="usd">$110.00</span>
-                            <span class="ssp">SSP 150,000</span>
-                        </div>
-                        <button class="view-more">View More</button>
-                    </div>
-                </div>
-                
-                <!-- Add more product cards as needed -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
+            <div class="features-grid">
+                <div class="feature-card">
                     <i class="fas fa-shipping-fast"></i>
-                    <h3>Free Delivery</h3>
+                    <h3>Fast Delivery</h3>
                     <p>Free delivery within Juba in 30-40 minutes</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <h3>Cash on Delivery</h3>
-                    <p>Pay when you receive your order</p>
+                <div class="feature-card">
+                    <i class="fas fa-gem"></i>
+                    <h3>Premium Quality</h3>
+                    <p>Direct from Dubai, guaranteed authenticity</p>
                 </div>
-                <div class="service-card">
+                <div class="feature-card">
                     <i class="fas fa-tags"></i>
-                    <h3>Wholesale & Retail</h3>
-                    <p>Competitive prices for both wholesale and retail</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-plane"></i>
-                    <h3>Direct Import</h3>
-                    <p>Products imported directly from Dubai</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Contact Us</h2>
-                    <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <div>
-                            <h3>WhatsApp</h3>
-                            <a href="https://wa.me/211981184646">+211 981 184 646</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+211 981 184 646</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Address</h3>
-                            <p>Juba, South Sudan</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+                    <h3>Best Prices</h3>
+                    <p>Wholesale and retail competitive pricing</p>
                 </div>
             </div>
         </div>
@@ -208,20 +81,27 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>HOME DEPOT Juba</h3>
-                    <p>Your trusted partner for electronics and perfumes from Dubai.</p>
+                    <p>Your trusted partner for premium electronics and perfumes imported directly from Dubai.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/211981184646"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <p><i class="fas fa-phone"></i> +211 981 184 646</p>
                     <p><i class="fas fa-map-marker-alt"></i> Juba, South Sudan</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/211981184646"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
