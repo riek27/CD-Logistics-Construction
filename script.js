@@ -246,3 +246,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('HOME DEPOT Juba website initialized successfully');
 });
+
+
+// Add this to your existing script.js file
+
+// Counter Animation for Stats Section
+function animateCounter() {
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 200; // The lower the slower
+    
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const count = +counter.innerText;
+        const inc = target / speed;
+        
+        if(count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(() => animateCounter(), 1);
+        } else {
+            counter.innerText = target;
+        }
+    });
+}
+
+// Initialize counter animation when stats section is in view
+const statsSection = document.querySelector('.stats-section');
+if(statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                animateCounter();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    observer.observe(statsSection);
+}
