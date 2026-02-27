@@ -44,6 +44,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('nav ul');
 
+    // Helper function to close mobile menu and reset all dropdowns
+    function closeMobileMenu() {
+        if (navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+
+            // Also close any open dropdowns
+            document.querySelectorAll('.dropdown.show').forEach(drop => {
+                drop.classList.remove('show');
+            });
+        }
+    }
+
     if (mobileMenuBtn && navMenu) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -56,16 +71,17 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
+                // When closing menu, also close any open dropdowns
+                document.querySelectorAll('.dropdown.show').forEach(drop => {
+                    drop.classList.remove('show');
+                });
             }
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!navMenu.contains(event.target) && !mobileMenuBtn.contains(event.target) && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                closeMobileMenu();
             }
         });
 
@@ -73,12 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = document.querySelectorAll('nav ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                closeMobileMenu();
             });
         });
     }
@@ -113,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset dropdown classes when resizing to desktop
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            document.querySelectorAll('.dropdown').forEach(drop => {
+            document.querySelectorAll('.dropdown.show').forEach(drop => {
                 drop.classList.remove('show');
             });
         }
