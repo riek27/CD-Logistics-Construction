@@ -144,26 +144,18 @@ nav ul li a.active::after {
     width: 100%;
 }
 
-/* Dropdown menu */
+/* ---------- DROPDOWN MENU (clean & fixed) ---------- */
+
+/* Base styles shared by both desktop & mobile */
 .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
     background-color: var(--white);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     min-width: 240px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: var(--transition);
     z-index: 10;
     border-radius: 2px;
-}
-
-nav ul li:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .dropdown li {
@@ -177,6 +169,9 @@ nav ul li:hover .dropdown {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     white-space: nowrap;
     font-size: 0.95rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: var(--transition);
 }
 
 .dropdown li a:hover {
@@ -185,7 +180,50 @@ nav ul li:hover .dropdown {
 }
 
 .dropdown li a::after {
-    display: none; /* remove underline effect inside dropdown */
+    display: none; /* remove global underline effect */
+}
+
+/* ---------- DESKTOP (min-width: 769px) ---------- */
+@media (min-width: 769px) {
+    .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+    }
+
+    /* Show only on hover of parent li */
+    nav ul li:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- MOBILE / TABLET (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+    .dropdown {
+        position: static;          /* remove absolute positioning */
+        opacity: 1;                /* always visible but hidden by height */
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        width: 100%;
+        max-height: 0;             /* collapsed by default */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background-color: var(--beige);
+        margin-top: 0.5rem;
+        padding-left: 1rem;
+    }
+
+    /* Toggle class added via JavaScript */
+    .dropdown.show {
+        max-height: 500px;         /* expanded when toggled */
+    }
 }
 
 /* Hero Section */
