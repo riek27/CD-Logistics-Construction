@@ -1,285 +1,232 @@
-// script.js - Complete Multi-Page JavaScript
+// script.js - Complete Multi-Page JavaScript for CD Logistics
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+    'use strict';
 
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+    /* ==================== TYPING ANIMATION FOR HERO ==================== */
+    const typedTextSpan = document.getElementById('typing-text');
+    if (typedTextSpan) {
+        const words = ['Construction', 'Architecture', 'Logistics', 'Property Management'];
+        let i = 0;
+        let j = 0;
+        let currentWord = '';
+        let isDeleting = false;
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
+        function type() {
+            if (i < words.length) {
+                if (!isDeleting && j <= words[i].length) {
+                    currentWord = words[i].substring(0, j);
+                    typedTextSpan.textContent = currentWord;
+                    j++;
+                    setTimeout(type, 150);
+                } else if (isDeleting && j >= 0) {
+                    currentWord = words[i].substring(0, j);
+                    typedTextSpan.textContent = currentWord;
+                    j--;
+                    setTimeout(type, 100);
+                } else {
+                    if (!isDeleting) {
+                        isDeleting = true;
+                        setTimeout(type, 1000);
+                    } else {
+                        isDeleting = false;
+                        i = (i + 1) % words.length;
+                        j = 0;
+                        setTimeout(type, 400);
+                    }
+                }
+            }
+        }
+        type();
     }
 
-    // Navbar background change on scroll
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+    /* ==================== MOBILE MENU TOGGLE ==================== */
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('nav ul');
+    const body = document.body;
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            // Change icon between bars and times
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navMenu.contains(event.target) && !mobileMenuBtn.contains(event.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when a nav link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    }
+
+    /* ==================== DROPDOWN HANDLING FOR MOBILE ==================== */
+    // On mobile, clicking on the parent link (Services) toggles the dropdown
+    const dropdownParents = document.querySelectorAll('nav ul li > a[href*="services"]'); // Select the Services link specifically
+    // Or more generally: any li with dropdown class?
+    // Actually the HTML structure: <li> with dropdown class is not present; instead the parent li contains ul.dropdown
+    const serviceLi = document.querySelectorAll('nav ul li');
+    serviceLi.forEach(li => {
+        const link = li.querySelector('a');
+        const dropdown = li.querySelector('.dropdown');
+        if (dropdown && link) {
+            // For desktop, hover is fine. For mobile, we need click toggle
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Prevent navigation on mobile
+                    // Close other open dropdowns first? (optional)
+                    serviceLi.forEach(otherLi => {
+                        if (otherLi !== li) {
+                            const otherDropdown = otherLi.querySelector('.dropdown');
+                            if (otherDropdown) otherDropdown.style.maxHeight = null;
+                        }
+                    });
+                    // Toggle current dropdown
+                    if (dropdown.style.maxHeight) {
+                        dropdown.style.maxHeight = null;
+                    } else {
+                        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+                    }
+                }
+            });
         }
     });
 
-    // Product filtering functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-
-    if (filterButtons.length > 0 && productCards.length > 0) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const category = button.getAttribute('data-category');
-                
-                productCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
+    // Reset dropdown styles on window resize (if going from mobile to desktop)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.dropdown').forEach(drop => {
+                drop.style.maxHeight = null; // Remove inline style
             });
-        });
-    }
+        }
+    });
 
-    // Form submission handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
+    /* ==================== NAVBAR SCROLL EFFECT ==================== */
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            header.style.backgroundColor = '#ffffff';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+        }
+    });
+
+    /* ==================== SMOOTH SCROLL FOR ANCHOR LINKS ==================== */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
-            
-            // Simulate form submission
-            showNotification('Thank you for your message! We will get back to you soon.', 'success');
-            this.reset();
-            
-            // In a real application, you would send the data to a server here
-            // Example using fetch:
-            /*
-            fetch('your-server-endpoint', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                showNotification('Message sent successfully!', 'success');
-                this.reset();
-            })
-            .catch(error => {
-                showNotification('Error sending message. Please try again.', 'error');
-            });
-            */
+        });
+    });
+
+    /* ==================== BUTTON RIPPLE EFFECT (premium touch) ==================== */
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const rect = btn.getBoundingClientRect();
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            ripple.style.left = e.clientX - rect.left + 'px';
+            ripple.style.top = e.clientY - rect.top + 'px';
+            ripple.style.background = 'rgba(255,255,255,0.5)';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.width = ripple.style.height = '10px';
+            ripple.style.animation = 'rippleAnim 0.5s linear';
+            btn.style.position = 'relative';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 500);
+        });
+    });
+
+    // Add keyframe animation for ripple if not already present
+    if (!document.querySelector('#rippleStyle')) {
+        const styleSheet = document.createElement("style");
+        styleSheet.id = 'rippleStyle';
+        styleSheet.textContent = `@keyframes rippleAnim { to { transform: scale(20); opacity: 0; } }`;
+        document.head.appendChild(styleSheet);
+    }
+
+    /* ==================== SIMPLE DARK MODE TOGGLE (optional) ==================== */
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                // Apply dark mode styles (simple inversion, you can expand)
+                document.body.style.backgroundColor = '#1a1a1a';
+                document.body.style.color = '#f0f0f0';
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                document.body.style.backgroundColor = '';
+                document.body.style.color = '';
+            }
         });
     }
 
-    // Scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    /* ==================== HERO BACKGROUND ROTATION (if multiple images) ==================== */
+    const heroBgImages = document.querySelectorAll('.hero-bg-image');
+    if (heroBgImages.length > 1) {
+        let current = 0;
+        setInterval(() => {
+            heroBgImages[current].classList.remove('active');
+            current = (current + 1) % heroBgImages.length;
+            heroBgImages[current].classList.add('active');
+        }, 6000);
+    }
 
+    /* ==================== SCROLL REVEAL (simple fade-in) ==================== */
+    const revealElements = document.querySelectorAll('.section-title, .about-content, .services-grid, .features-grid, .portfolio-grid, .cta-content');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
 
-    // Observe all elements with slide-up animation
-    document.querySelectorAll('.slide-up').forEach(element => {
-        observer.observe(element);
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
     });
-
-    // Initialize animations on home page
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        // Home page specific animations are handled by CSS
-        console.log('Home page animations initialized');
-    }
-
-    // WhatsApp order button enhancement
-    const orderButtons = document.querySelectorAll('.order-btn');
-    orderButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (this.getAttribute('href') && this.getAttribute('href').includes('wa.me')) {
-                // Track WhatsApp orders (you can integrate with analytics here)
-                console.log('WhatsApp order initiated');
-            }
-        });
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Notification function
-    function showNotification(message, type = 'info') {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <span>${message}</span>
-            <button onclick="this.parentElement.remove()">&times;</button>
-        `;
-        
-        // Add styles if not already added
-        if (!document.querySelector('#notification-styles')) {
-            const styles = document.createElement('style');
-            styles.id = 'notification-styles';
-            styles.textContent = `
-                .notification {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    padding: 15px 20px;
-                    border-radius: 5px;
-                    color: white;
-                    z-index: 10000;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    min-width: 300px;
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                    transform: translateX(400px);
-                    transition: transform 0.3s ease;
-                }
-                .notification.success { background: #4CAF50; }
-                .notification.error { background: #f44336; }
-                .notification.info { background: #2196F3; }
-                .notification button {
-                    background: none;
-                    border: none;
-                    color: white;
-                    font-size: 20px;
-                    cursor: pointer;
-                    margin-left: 10px;
-                }
-                .notification.show { transform: translateX(0); }
-            `;
-            document.head.appendChild(styles);
-        }
-        
-        document.body.appendChild(notification);
-        
-        // Show notification
-        setTimeout(() => notification.classList.add('show'), 100);
-        
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.parentElement.removeChild(notification);
-                }
-            }, 300);
-        }, 5000);
-    }
-
-    // Page load animations
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
-        
-        // Home page specific animations
-        const homeElements = document.querySelectorAll('.fade-in');
-        homeElements.forEach((el, index) => {
-            el.style.animation = `fadeInUp 1s ease ${index * 0.3}s forwards`;
-        });
-    });
-
-    // Add loading state to buttons
-    const buttons = document.querySelectorAll('button, .cta-button');
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.type === 'submit' || this.classList.contains('order-btn')) {
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                this.disabled = true;
-                
-                // Reset after 3 seconds (simulate processing)
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.disabled = false;
-                }, 3000);
-            }
-        });
-    });
-
-    console.log('HOME DEPOT Juba website initialized successfully');
 });
-
-
-// Add this to your existing script.js file
-
-// Counter Animation for Stats Section
-function animateCounter() {
-    const counters = document.querySelectorAll('.stat-number');
-    const speed = 200; // The lower the slower
-    
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-count');
-        const count = +counter.innerText;
-        const inc = target / speed;
-        
-        if(count < target) {
-            counter.innerText = Math.ceil(count + inc);
-            setTimeout(() => animateCounter(), 1);
-        } else {
-            counter.innerText = target;
-        }
-    });
-}
-
-// Initialize counter animation when stats section is in view
-const statsSection = document.querySelector('.stats-section');
-if(statsSection) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                animateCounter();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    observer.observe(statsSection);
-}
