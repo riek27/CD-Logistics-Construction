@@ -2,14 +2,623 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | CD Logistics, Construction & General Trading Co. Ltd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Our Services | CD Logistics</title>
+    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========== GLOBAL VARIABLES & RESET ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --text-light: #666666;
+            --text-dark: #333333;
+            --shadow: 0 5px 15px rgba(0,0,0,0.08);
+            --shadow-hover: 0 10px 25px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--charcoal);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+            transform: translateY(-2px);
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            background: var(--charcoal);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--gold);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 250px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 10;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        nav ul li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown li {
+            width: 100%;
+        }
+
+        .dropdown li a {
+            color: var(--charcoal);
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown li a:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            position: relative;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .page-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .page-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44,44,44,0.8);
+            z-index: 2;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .page-header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* ========== SERVICES GRID (FIXED) ========== */
+        .services {
+            padding: 5rem 0;
+            background: var(--white);
+            width: 100%;
+            overflow: visible; /* ensure no hidden overflow */
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-image {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 2rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .service-content p {
+            color: var(--text-light);
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+
+        .service-content ul {
+            margin: 1rem 0 1.5rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .service-content ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .service-content ul li::before {
+            content: '✓';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        .service-content .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* ========== ABOUT / WHY CHOOSE US ========== */
+        .about {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .about-text ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .about-text ul li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-text ul li i {
+            color: var(--gold);
+            margin-right: 0.5rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 2px;
+            box-shadow: var(--shadow);
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 0;
+            color: var(--white);
+            text-align: center;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-links i {
+            margin-right: 0.5rem;
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* ========== DARK MODE TOGGLE (optional) ========== */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--charcoal);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .dark-mode-toggle:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+
+        /* ========== RESPONSIVE FIXES (MOBILE FIRST) ========== */
+        @media screen and (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                width: 100%;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 0.8rem 0;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                background: transparent;
+                box-shadow: none;
+                display: none;
+            }
+
+            nav ul li:hover .dropdown {
+                display: block;
+            }
+
+            .dropdown li a {
+                color: var(--white);
+                padding-left: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-image {
+                height: 220px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .page-header-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .service-image {
+                height: 200px;
+            }
+
+            .service-content {
+                padding: 1.5rem;
+            }
+
+            .service-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .page-header {
+                height: 300px;
+            }
+
+            .page-header-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* safety net – ensure services are always visible */
+        .services {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            min-height: 200px; /* just in case */
+        }
+
+        .service-card {
+            display: flex !important;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header & Navigation (CD Logistics) -->
+    <!-- Header & Navigation -->
     <header>
         <div class="container nav-container">
             <a href="index.html" class="logo">CD <span>Logistics</span></a>
@@ -49,7 +658,7 @@
         </div>
     </section>
 
-    <!-- Services Overview (all 7 services in premium cards) -->
+    <!-- Services Overview (all 7 services) -->
     <section class="services">
         <div class="container">
             <div class="section-title">
@@ -65,7 +674,7 @@
                     <div class="service-content">
                         <h3>Construction Works</h3>
                         <p>Residential & commercial buildings, warehouses, hospitals — full project execution with structural integrity and modern techniques.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Reinforced concrete structures</li>
                             <li>Industrial facilities</li>
                             <li>Project management</li>
@@ -74,7 +683,6 @@
                         <a href="contact.html" class="btn">Inquire Now</a>
                     </div>
                 </div>
-
                 <!-- Architectural & Engineering Design -->
                 <div class="service-card" id="architectural">
                     <div class="service-image">
@@ -83,7 +691,7 @@
                     <div class="service-content">
                         <h3>Architectural & Engineering Design</h3>
                         <p>Functional planning, structural engineering, modern aesthetics, and 3D visualization tailored to your vision and regulatory standards.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Concept & schematic design</li>
                             <li>Structural calculations</li>
                             <li>Permit assistance</li>
@@ -92,7 +700,6 @@
                         <a href="contact.html" class="btn">Discuss Design</a>
                     </div>
                 </div>
-
                 <!-- Logistics Services -->
                 <div class="service-card" id="logistics">
                     <div class="service-image">
@@ -101,7 +708,7 @@
                     <div class="service-content">
                         <h3>Logistics Services</h3>
                         <p>Transportation, material supply, project coordination, and customs clearance — keeping your project on track and on budget.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Heavy equipment transport</li>
                             <li>Procurement & supply chain</li>
                             <li>Warehousing & distribution</li>
@@ -110,7 +717,6 @@
                         <a href="contact.html" class="btn">Get a Quote</a>
                     </div>
                 </div>
-
                 <!-- Renovation & Remodeling -->
                 <div class="service-card" id="renovation">
                     <div class="service-image">
@@ -119,7 +725,7 @@
                     <div class="service-content">
                         <h3>Renovation & Remodeling</h3>
                         <p>Transform existing structures with modern upgrades, space reconfiguration, and restoration — blending functionality with aesthetics.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Commercial & residential remodels</li>
                             <li>Historical restoration</li>
                             <li>Facade improvements</li>
@@ -128,7 +734,6 @@
                         <a href="contact.html" class="btn">Plan Renovation</a>
                     </div>
                 </div>
-
                 <!-- Interior Decoration -->
                 <div class="service-card" id="interior">
                     <div class="service-image">
@@ -137,7 +742,7 @@
                     <div class="service-content">
                         <h3>Interior Decoration</h3>
                         <p>Custom joinery, finishing, furnishing, and styling for homes and offices — creating spaces that inspire.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Space planning & layout</li>
                             <li>Custom furniture & millwork</li>
                             <li>Lighting design</li>
@@ -146,7 +751,6 @@
                         <a href="contact.html" class="btn">Explore Ideas</a>
                     </div>
                 </div>
-
                 <!-- Maintenance Services -->
                 <div class="service-card" id="maintenance">
                     <div class="service-image">
@@ -155,7 +759,7 @@
                     <div class="service-content">
                         <h3>Maintenance Services</h3>
                         <p>Preventive and corrective maintenance for buildings and infrastructure, ensuring longevity and operational efficiency.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Routine inspections</li>
                             <li>Repairs & troubleshooting</li>
                             <li>HVAC & electrical upkeep</li>
@@ -164,7 +768,6 @@
                         <a href="contact.html" class="btn">Schedule Maintenance</a>
                     </div>
                 </div>
-
                 <!-- Property Management -->
                 <div class="service-card" id="property">
                     <div class="service-image">
@@ -173,7 +776,7 @@
                     <div class="service-content">
                         <h3>Property Management</h3>
                         <p>Leasing, facility management, tenant relations, and asset optimization — maximizing your property's value.</p>
-                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <ul>
                             <li>Tenant sourcing & screening</li>
                             <li>Rent collection & reporting</li>
                             <li>Maintenance coordination</li>
@@ -186,7 +789,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Us (additional trust builders) -->
+    <!-- Why Choose Us -->
     <section class="about">
         <div class="container">
             <div class="section-title">
@@ -197,11 +800,11 @@
                 <div class="about-text">
                     <p>With a proven track record in South Sudan and beyond, we combine local knowledge with international best practices. Our integrated approach ensures seamless coordination between construction, design, and logistics — saving you time and money.</p>
                     <p>We are committed to:</p>
-                    <ul style="list-style: none; margin-top: 1rem;">
-                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Uncompromising quality</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Safety first culture</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Timely delivery</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Transparent communication</li>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Uncompromising quality</li>
+                        <li><i class="fas fa-check-circle"></i> Safety first culture</li>
+                        <li><i class="fas fa-check-circle"></i> Timely delivery</li>
+                        <li><i class="fas fa-check-circle"></i> Transparent communication</li>
                     </ul>
                 </div>
                 <div class="about-image">
@@ -221,7 +824,7 @@
         </div>
     </section>
 
-    <!-- Footer (CD Logistics) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -275,6 +878,11 @@
         <i class="fas fa-moon"></i>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Simple mobile menu toggle (optional)
+        document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
