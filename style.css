@@ -1,12 +1,13 @@
 /* style.css - Complete styling for CD Logistics (charcoal & gold) */
 
 :root {
-    --charcoal: #2c2c2c;
-    --gold: #bfa06b;
-    --white: #ffffff;
-    --beige: #f5f2ed;
-    --light-gray: #f8f8f8;
-    --dark-overlay: rgba(44, 44, 44, 0.85);
+    --gold: #D4AF37;
+    --charcoal: #2C2C2C;
+    --white: #FFFFFF;
+    --text-light: #666666;
+    --text-dark: #333333;
+    --shadow: 0 5px 15px rgba(0,0,0,0.08);
+    --shadow-hover: 0 10px 25px rgba(0,0,0,0.15);
     --transition: all 0.3s ease;
 }
 
