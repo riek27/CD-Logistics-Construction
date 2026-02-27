@@ -3,130 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - HOME DEPOT Juba</title>
+    <title>About Us | CD Logistics, Construction & General Trading Co. Ltd</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Header & Navigation (CD Logistics version) -->
     <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="nav-logo">HOME DEPOT</a>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
-                    <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CD <span>Logistics</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li>
+                        <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="services.html#construction">Construction Works</a></li>
+                            <li><a href="services.html#architectural">Architectural & Engineering Design</a></li>
+                            <li><a href="services.html#logistics">Logistics Services</a></li>
+                            <li><a href="services.html#renovation">Renovation & Remodeling</a></li>
+                            <li><a href="services.html#interior">Interior Decoration</a></li>
+                            <li><a href="services.html#maintenance">Maintenance Services</a></li>
+                            <li><a href="services.html#property">Property Management</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
-    <!-- Page Header -->
+    <!-- Page Header (Hero with background) -->
     <section class="page-header">
-        <div class="container">
-            <h1>About HOME DEPOT</h1>
-            <p>Your trusted partner for premium products in South Sudan</p>
+        <div class="page-header-bg" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
+            <h1>About CD Logistics</h1>
+            <p>Building South Sudan’s future with integrity, excellence, and reliability</p>
         </div>
     </section>
 
-    <!-- About Content -->
-    <section class="about-content">
+    <!-- Company History Section -->
+    <section class="about">
+        <div class="section-bg" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
         <div class="container">
-            <div class="about-grid">
+            <div class="section-title">
+                <h2>Our History</h2>
+                <p>A legacy of trust and quality since 2012</p>
+            </div>
+            <div class="about-content">
                 <div class="about-text">
-                    <h2>Our Story</h2>
-                    <p>Welcome to HOME DEPOT, your premier destination for high-quality electronics and luxury perfumes in Juba, South Sudan. Established with a vision to bring world-class products to our community, we pride ourselves on excellence and reliability.</p>
-                    
-                    <p>We specialize in importing premium electronics and authentic perfumes directly from Dubai, ensuring that our customers receive only the best quality products at competitive prices. Our direct sourcing approach eliminates middlemen, allowing us to offer wholesale and retail prices that are unmatched in the market.</p>
-
-                    <div class="mission-vision">
-                        <div class="mission">
-                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                            <p>To provide premium quality electronics and perfumes with exceptional customer service and fast, reliable delivery throughout Juba.</p>
-                        </div>
-                        <div class="vision">
-                            <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                            <p>To become South Sudan's most trusted retail partner for international quality products and superior shopping experience.</p>
-                        </div>
-                    </div>
+                    <p>Founded in Juba, CD Logistics, Construction & General Trading Co. Ltd began as a small general trading outfit. Through unwavering commitment to quality and safety, we rapidly grew into one of South Sudan’s most respected construction and logistics firms. We have successfully delivered hospitals, educational institutions, commercial high‑rises, and critical infrastructure — always on time and within budget.</p>
+                    <p>Our journey from a modest startup to a market leader is a testament to our dedication to excellence. We have built long‑term relationships with clients, suppliers, and communities by consistently exceeding expectations. Today, we are proud to be the partner of choice for government agencies, international NGOs, and private developers across the region.</p>
                 </div>
                 <div class="about-image">
-                    <img src="assets/awws.jpg" alt="Our Store">
-                </div>
-            </div>
-
-            <!-- Why Choose Us -->
-            <div class="why-choose-us">
-                <h2>Why Choose HOME DEPOT?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-award"></i>
-                        <h3>Premium Quality</h3>
-                        <p>All products sourced directly from Dubai with guaranteed authenticity and quality assurance.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-shipping-fast"></i>
-                        <h3>Fast Delivery</h3>
-                        <p>Free delivery within Juba in just 30-40 minutes. Your convenience is our priority.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <h3>Best Prices</h3>
-                        <p>Competitive wholesale and retail prices with no hidden costs or extra charges.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-headset"></i>
-                        <h3>Customer Support</h3>
-                        <p>24/7 customer support via WhatsApp and phone calls for all your inquiries.</p>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction site history">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Mission & Vision (2 premium cards) -->
+    <section class="services"> <!-- reuse services styling for cards -->
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission & Vision</h2>
+                <p>Guided by purpose, driven by excellence</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+                <div class="service-card" style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-bullseye" style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem;"></i>
+                    <h3>Our Mission</h3>
+                    <p>To provide innovative construction and logistics solutions that drive South Sudan’s development, while upholding the highest standards of safety, ethics, and client satisfaction.</p>
+                </div>
+                <div class="service-card" style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-eye" style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem;"></i>
+                    <h3>Our Vision</h3>
+                    <p>To be the benchmark for engineering excellence in East Africa — a partner of choice for visionary projects that transform communities and inspire progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values (5 animated cards) -->
+    <section class="why-choose" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                <div class="feature-item">
+                    <i class="fas fa-gem"></i>
+                    <h4>Quality</h4>
+                    <p>Uncompromising standards in every project</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-scale-balanced"></i>
+                    <h4>Integrity</h4>
+                    <p>Honest, transparent, and ethical</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-hard-hat"></i>
+                    <h4>Safety</h4>
+                    <p>Zero harm – always our first priority</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-star"></i>
+                    <h4>Excellence</h4>
+                    <p>Continuous improvement and innovation</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>Reliability</h4>
+                    <p>Delivering on time, every time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Expertise Section -->
+    <section class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team Expertise</h2>
+                <p>World‑class professionals dedicated to your project</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team of engineers and architects">
+                </div>
+                <div class="about-text">
+                    <p>Our multidisciplinary team includes licensed architects, structural engineers, project managers, logistics coordinators, and skilled foremen — many with international experience. We invest in continuous training to stay ahead of modern construction techniques and industry best practices.</p>
+                    <p>From concept to completion, our experts work collaboratively to ensure your project benefits from the latest innovations and highest standards of craftsmanship. Whether it's a complex high‑rise or a critical logistics operation, you can trust our team to deliver.</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Certified architects & engineers</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Experienced project managers (PMP)</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Logistics & supply chain specialists</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--gold);"></i> Skilled craftsmen & technicians</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section" style="background-image: url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(44,44,44,0.85);"></div>
+        <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center; color: white;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ready to Bring Your Vision to Life?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Let's discuss your project and explore how we can help you achieve excellence.</p>
+            <a href="contact.html" class="btn" style="background: var(--gold); color: var(--charcoal); padding: 1rem 3rem; font-weight: 600;">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer (CD Logistics) -->
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>HOME DEPOT Juba</h3>
-                    <p>Your trusted partner for premium electronics and perfumes imported directly from Dubai.</p>
+                <div class="footer-column">
+                    <h3>CD Logistics <span style="color: var(--gold);">Construction</span></h3>
+                    <p>Engineering South Sudan’s tomorrow — with integrity, safety and excellence.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <div class="footer-section">
+                <div class="footer-column">
                     <h3>Quick Links</h3>
-                    <ul>
+                    <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#construction">Construction Works</a></li>
+                        <li><a href="services.html#architectural">Architectural Design</a></li>
+                        <li><a href="services.html#logistics">Logistics Services</a></li>
+                        <li><a href="services.html#renovation">Renovation</a></li>
+                        <li><a href="services.html#interior">Interior Decoration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
                     <h3>Contact Info</h3>
-                    <p><i class="fas fa-phone"></i> +211 981 184 646</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Juba, South Sudan</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/211981184646"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Suk Libya next to Charter Bank, Juba, South Sudan</li>
+                        <li><i class="fas fa-phone"></i> +211 926 295 744  |  +211 912 616 971</li>
+                        <li><i class="fas fa-envelope"></i> info@cdconstruction.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8am-5pm</li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 HOME DEPOT Juba. All rights reserved.</p>
+                <p>&copy; 2026 CD Logistics, Construction & General Trading Co. Ltd. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Dark Mode Toggle (optional) -->
+    <div class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
 
     <script src="script.js"></script>
 </body>
