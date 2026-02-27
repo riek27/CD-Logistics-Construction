@@ -629,17 +629,48 @@ section {
     padding-bottom: 2rem;
 }
 
+/* Services Section - Enhanced Mobile Responsive */
 
-/* Enhanced Services Section for CD Logistics */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
 
-/* Service card refinements */
 .service-card {
+    background-color: var(--white);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
-    height: 100%; /* ensure equal height cards */
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-image {
+    height: 220px;
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.1);
 }
 
 .service-content {
+    padding: 1.5rem;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -660,7 +691,7 @@ section {
 /* Service feature list styling */
 .service-content ul {
     margin: 1rem 0 1.5rem;
-    padding-left: 1.5rem;
+    padding-left: 0;
     list-style: none;
 }
 
@@ -670,6 +701,7 @@ section {
     padding-left: 1.8rem;
     color: #444;
     font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .service-content ul li::before {
@@ -681,17 +713,10 @@ section {
     top: 0;
 }
 
-/* Alternatively, if using Font Awesome check circles */
-.service-content ul li i {
-    color: var(--gold);
-    margin-right: 0.5rem;
-    width: 1.2rem;
-}
-
 /* Button inside service card */
 .service-content .btn {
-    margin-top: auto; /* push button to bottom */
-    align-self: flex-start; /* or center if preferred */
+    margin-top: auto;
+    align-self: flex-start;
     padding: 0.7rem 1.8rem;
     font-size: 0.85rem;
     background-color: var(--gold);
@@ -699,6 +724,8 @@ section {
     border: none;
     border-radius: 2px;
     transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
 }
 
 .service-content .btn:hover {
@@ -707,27 +734,119 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* Responsive adjustments */
+/* ---------- Mobile Responsive Fixes ---------- */
 @media (max-width: 768px) {
     .services-grid {
-        gap: 1.5rem;
+        grid-template-columns: 1fr; /* single column on mobile */
+        gap: 2rem;
     }
-    
+
+    .service-card {
+        max-width: 100%;
+    }
+
+    .service-image {
+        height: 200px; /* slightly smaller on mobile */
+    }
+
+    .service-content {
+        padding: 1.2rem;
+    }
+
+    .service-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .service-content p {
+        font-size: 0.95rem;
+    }
+
     .service-content ul {
-        padding-left: 1rem;
+        margin: 0.8rem 0 1.2rem;
+    }
+
+    .service-content ul li {
+        font-size: 0.9rem;
+        padding-left: 1.6rem;
+    }
+
+    .service-content .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .service-image {
+        height: 180px;
+    }
+
+    .service-content {
+        padding: 1rem;
+    }
+
+    .service-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .service-content ul li {
+        font-size: 0.85rem;
+        padding-left: 1.5rem;
+    }
+}
+
+/* Why Choose Us (features grid) - ensure mobile visibility */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        gap: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .service-content h3 {
-        font-size: 1.3rem;
-    }
-    
-    .service-content ul li {
-        font-size: 0.9rem;
+    .features-grid {
+        grid-template-columns: 1fr; /* 1 column on very small */
     }
 }
 
+.feature-item {
+    background: var(--white);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(191, 160, 107, 0.1);
+}
+
+.feature-item i {
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.feature-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+}
+
+.feature-item p {
+    font-size: 0.9rem;
+    color: #666;
+}
 /* Why Choose Us (features grid) */
 .features-grid {
     display: grid;
