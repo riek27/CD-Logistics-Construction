@@ -43,13 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
     /* ==================== MOBILE MENU TOGGLE ==================== */
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('nav ul');
-    const body = document.body;
 
     if (mobileMenuBtn && navMenu) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             navMenu.classList.toggle('active');
-            // Change icon between bars and times
+            // Toggle icon between bars and times
             const icon = mobileMenuBtn.querySelector('i');
             if (navMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Close menu when a nav link is clicked
+        // Close menu when any nav link (including dropdown items) is clicked
         const navLinks = document.querySelectorAll('nav ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -85,42 +84,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* ==================== DROPDOWN HANDLING FOR MOBILE ==================== */
-    // On mobile, clicking on the parent link (Services) toggles the dropdown
-    const dropdownParents = document.querySelectorAll('nav ul li > a[href*="services"]'); // Select the Services link specifically
-    // Or more generally: any li with dropdown class?
-    // Actually the HTML structure: <li> with dropdown class is not present; instead the parent li contains ul.dropdown
-    const serviceLi = document.querySelectorAll('nav ul li');
-    serviceLi.forEach(li => {
+    // On mobile, clicking the parent link (Services) toggles the dropdown
+    const serviceItems = document.querySelectorAll('nav ul li'); // all top-level li
+    serviceItems.forEach(li => {
         const link = li.querySelector('a');
         const dropdown = li.querySelector('.dropdown');
         if (dropdown && link) {
-            // For desktop, hover is fine. For mobile, we need click toggle
+            // For desktop, hover works; for mobile, we use click toggle
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault(); // Prevent navigation on mobile
-                    // Close other open dropdowns first? (optional)
-                    serviceLi.forEach(otherLi => {
+                    // Close other open dropdowns for better UX
+                    serviceItems.forEach(otherLi => {
                         if (otherLi !== li) {
                             const otherDropdown = otherLi.querySelector('.dropdown');
-                            if (otherDropdown) otherDropdown.style.maxHeight = null;
+                            if (otherDropdown) {
+                                otherDropdown.classList.remove('show');
+                            }
                         }
                     });
-                    // Toggle current dropdown
-                    if (dropdown.style.maxHeight) {
-                        dropdown.style.maxHeight = null;
-                    } else {
-                        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
-                    }
+                    // Toggle current dropdown using a class
+                    dropdown.classList.toggle('show');
                 }
             });
         }
     });
 
-    // Reset dropdown styles on window resize (if going from mobile to desktop)
+    // Reset dropdown classes when resizing to desktop
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
             document.querySelectorAll('.dropdown').forEach(drop => {
-                drop.style.maxHeight = null; // Remove inline style
+                drop.classList.remove('show');
             });
         }
     });
@@ -180,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(styleSheet);
     }
 
-    /* ==================== SIMPLE DARK MODE TOGGLE (optional) ==================== */
+    /* ==================== DARK MODE TOGGLE (optional) ==================== */
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', function() {
@@ -189,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.body.classList.contains('dark-mode')) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
-                // Apply dark mode styles (simple inversion, you can expand)
+                // Simple dark mode styles (you can expand via CSS classes)
                 document.body.style.backgroundColor = '#1a1a1a';
                 document.body.style.color = '#f0f0f0';
             } else {
@@ -201,19 +195,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* ==================== HERO BACKGROUND ROTATION (if multiple images) ==================== */
-    const heroBgImages = document.querySelectorAll('.hero-bg-image');
-    if (heroBgImages.length > 1) {
-        let current = 0;
-        setInterval(() => {
-            heroBgImages[current].classList.remove('active');
-            current = (current + 1) % heroBgImages.length;
-            heroBgImages[current].classList.add('active');
-        }, 6000);
-    }
-
-    /* ==================== SCROLL REVEAL (simple fade-in) ==================== */
-    const revealElements = document.querySelectorAll('.section-title, .about-content, .services-grid, .features-grid, .portfolio-grid, .cta-content');
+    /* ==================== SCROLL REVEAL (fade-in on scroll) ==================== */
+    const revealElements = document.querySelectorAll(
+        '.section-title, .about-content, .services-grid, .features-grid, .portfolio-grid, .cta-content'
+    );
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
