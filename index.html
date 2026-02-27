@@ -265,47 +265,6 @@
         <i class="fas fa-moon"></i>
     </div>
 
-    <!-- JavaScript (typing effect and other interactions) -->
-    <script src="script.js"></script>
-    <script>
-        // Simple typing animation for hero subtitle (will be part of script.js later)
-        (function() {
-            const typedTextSpan = document.getElementById('typing-text');
-            if (typedTextSpan) {
-                const words = ['Construction', 'Architecture', 'Logistics', 'Property Management'];
-                let i = 0;
-                let j = 0;
-                let currentWord = '';
-                let isDeleting = false;
-
-                function type() {
-                    if (i < words.length) {
-                        if (!isDeleting && j <= words[i].length) {
-                            currentWord = words[i].substring(0, j);
-                            typedTextSpan.textContent = currentWord;
-                            j++;
-                            setTimeout(type, 150);
-                        } else if (isDeleting && j >= 0) {
-                            currentWord = words[i].substring(0, j);
-                            typedTextSpan.textContent = currentWord;
-                            j--;
-                            setTimeout(type, 100);
-                        } else {
-                            if (!isDeleting) {
-                                isDeleting = true;
-                                setTimeout(type, 1000);
-                            } else {
-                                isDeleting = false;
-                                i = (i + 1) % words.length;
-                                j = 0;
-                                setTimeout(type, 400);
-                            }
-                        }
-                    }
-                }
-                type();
-            }
-        })();
-    </script>
+   <script src="script.js"></script>
 </body>
 </html>
