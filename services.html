@@ -3,173 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - HOME DEPOT Juba</title>
+    <title>Our Services | CD Logistics, Construction & General Trading Co. Ltd</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Header & Navigation (CD Logistics) -->
     <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="nav-logo">HOME DEPOT</a>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">CD <span>Logistics</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li>
+                        <a href="services.html" class="active">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="services.html#construction">Construction Works</a></li>
+                            <li><a href="services.html#architectural">Architectural & Engineering Design</a></li>
+                            <li><a href="services.html#logistics">Logistics Services</a></li>
+                            <li><a href="services.html#renovation">Renovation & Remodeling</a></li>
+                            <li><a href="services.html#interior">Interior Decoration</a></li>
+                            <li><a href="services.html#maintenance">Maintenance Services</a></li>
+                            <li><a href="services.html#property">Property Management</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <!-- Page Header -->
     <section class="page-header">
-        <div class="container">
+        <div class="page-header-bg" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
             <h1>Our Services</h1>
-            <p>Comprehensive solutions for all your needs</p>
+            <p>Comprehensive construction & logistics solutions tailored to your needs</p>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-page">
+    <!-- Services Overview (all 7 services in premium cards) -->
+    <section class="services">
         <div class="container">
-            <div class="services-grid">
-                <div class="service-card-large">
-                    <div class="service-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Fast Delivery Service</h3>
-                        <p>Experience our lightning-fast delivery service within Juba. We guarantee delivery of your orders within 30-40 minutes absolutely free. Our dedicated delivery team ensures your products reach you safely and on time.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Free delivery within Juba</li>
-                            <li><i class="fas fa-check"></i> 30-40 minutes delivery time</li>
-                            <li><i class="fas fa-check"></i> Professional delivery team</li>
-                            <li><i class="fas fa-check"></i> Safe and secure handling</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-card-large">
-                    <div class="service-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Cash on Delivery</h3>
-                        <p>Shop with confidence using our Cash on Delivery service. Pay only when you receive your order. No upfront payments, no risks. We make online shopping safe and convenient for everyone in Juba.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Pay when you receive</li>
-                            <li><i class="fas fa-check"></i> No upfront payments</li>
-                            <li><i class="fas fa-check"></i> Secure transaction</li>
-                            <li><i class="fas fa-check"></i> Money-back guarantee</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-card-large">
-                    <div class="service-icon">
-                        <i class="fas fa-tags"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Wholesale & Retail Prices</h3>
-                        <p>Benefit from our competitive pricing strategy. Whether you're buying in bulk or as an individual, we offer the best prices in the market. Our direct import from Dubai ensures you get quality products at affordable rates.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Competitive wholesale prices</li>
-                            <li><i class="fas fa-check"></i> Affordable retail prices</li>
-                            <li><i class="fas fa-check"></i> Bulk order discounts</li>
-                            <li><i class="fas fa-check"></i> Regular promotions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="service-card-large">
-                    <div class="service-icon">
-                        <i class="fas fa-plane"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Direct Import from Dubai</h3>
-                        <p>All our products are sourced directly from Dubai, ensuring authenticity and premium quality. We maintain strong relationships with suppliers to bring you the latest and best products in electronics and perfumes.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Direct from Dubai suppliers</li>
-                            <li><i class="fas fa-check"></i> Guaranteed authenticity</li>
-                            <li><i class="fas fa-check"></i> Latest product arrivals</li>
-                            <li><i class="fas fa-check"></i> Quality assurance</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="section-title">
+                <h2>Our Core Expertise</h2>
+                <p>Delivering excellence across every discipline</p>
             </div>
+            <div class="services-grid">
+                <!-- Construction Works -->
+                <div class="service-card" id="construction">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction Works">
+                    </div>
+                    <div class="service-content">
+                        <h3>Construction Works</h3>
+                        <p>Residential & commercial buildings, warehouses, hospitals — full project execution with structural integrity and modern techniques.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Reinforced concrete structures</li>
+                            <li>Industrial facilities</li>
+                            <li>Project management</li>
+                            <li>Quality control & safety</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Inquire Now</a>
+                    </div>
+                </div>
 
-            <!-- Additional Services -->
-            <div class="additional-services">
-                <h2>Additional Benefits</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <i class="fas fa-headset"></i>
-                        <h4>24/7 Support</h4>
-                        <p>Round-the-clock customer support via WhatsApp and phone calls</p>
+                <!-- Architectural & Engineering Design -->
+                <div class="service-card" id="architectural">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Architectural Design">
                     </div>
-                    <div class="benefit-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h4>Quality Guarantee</h4>
-                        <p>All products come with quality assurance and authenticity guarantee</p>
+                    <div class="service-content">
+                        <h3>Architectural & Engineering Design</h3>
+                        <p>Functional planning, structural engineering, modern aesthetics, and 3D visualization tailored to your vision and regulatory standards.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Concept & schematic design</li>
+                            <li>Structural calculations</li>
+                            <li>Permit assistance</li>
+                            <li>Sustainable design solutions</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Discuss Design</a>
                     </div>
-                    <div class="benefit-card">
-                        <i class="fas fa-exchange-alt"></i>
-                        <h4>Easy Returns</h4>
-                        <p>Simple and hassle-free return policy for defective products</p>
+                </div>
+
+                <!-- Logistics Services -->
+                <div class="service-card" id="logistics">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Logistics Services">
                     </div>
-                    <div class="benefit-card">
-                        <i class="fas fa-gift"></i>
-                        <h4>Special Offers</h4>
-                        <p>Regular promotions and special offers for our loyal customers</p>
+                    <div class="service-content">
+                        <h3>Logistics Services</h3>
+                        <p>Transportation, material supply, project coordination, and customs clearance — keeping your project on track and on budget.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Heavy equipment transport</li>
+                            <li>Procurement & supply chain</li>
+                            <li>Warehousing & distribution</li>
+                            <li>Customs brokerage</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Get a Quote</a>
+                    </div>
+                </div>
+
+                <!-- Renovation & Remodeling -->
+                <div class="service-card" id="renovation">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Renovation">
+                    </div>
+                    <div class="service-content">
+                        <h3>Renovation & Remodeling</h3>
+                        <p>Transform existing structures with modern upgrades, space reconfiguration, and restoration — blending functionality with aesthetics.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Commercial & residential remodels</li>
+                            <li>Historical restoration</li>
+                            <li>Facade improvements</li>
+                            <li>Interior reconfiguration</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Plan Renovation</a>
+                    </div>
+                </div>
+
+                <!-- Interior Decoration -->
+                <div class="service-card" id="interior">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior Decoration">
+                    </div>
+                    <div class="service-content">
+                        <h3>Interior Decoration</h3>
+                        <p>Custom joinery, finishing, furnishing, and styling for homes and offices — creating spaces that inspire.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Space planning & layout</li>
+                            <li>Custom furniture & millwork</li>
+                            <li>Lighting design</li>
+                            <li>Material & finish selection</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Explore Ideas</a>
+                    </div>
+                </div>
+
+                <!-- Maintenance Services -->
+                <div class="service-card" id="maintenance">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maintenance">
+                    </div>
+                    <div class="service-content">
+                        <h3>Maintenance Services</h3>
+                        <p>Preventive and corrective maintenance for buildings and infrastructure, ensuring longevity and operational efficiency.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Routine inspections</li>
+                            <li>Repairs & troubleshooting</li>
+                            <li>HVAC & electrical upkeep</li>
+                            <li>Emergency response</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Schedule Maintenance</a>
+                    </div>
+                </div>
+
+                <!-- Property Management -->
+                <div class="service-card" id="property">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Property Management">
+                    </div>
+                    <div class="service-content">
+                        <h3>Property Management</h3>
+                        <p>Leasing, facility management, tenant relations, and asset optimization — maximizing your property's value.</p>
+                        <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                            <li>Tenant sourcing & screening</li>
+                            <li>Rent collection & reporting</li>
+                            <li>Maintenance coordination</li>
+                            <li>Legal compliance</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Manage My Property</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Why Choose Us (additional trust builders) -->
+    <section class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose CD Logistics</h2>
+                <p>Your partner in progress</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>With a proven track record in South Sudan and beyond, we combine local knowledge with international best practices. Our integrated approach ensures seamless coordination between construction, design, and logistics — saving you time and money.</p>
+                    <p>We are committed to:</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Uncompromising quality</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Safety first culture</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Timely delivery</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--gold); margin-right: 0.5rem;"></i> Transparent communication</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team working">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="background-image: url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(44,44,44,0.85);"></div>
+        <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center; color: white; padding: 3rem 1rem;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ready to Start Your Project?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contact us today for a consultation and quote.</p>
+            <a href="contact.html" class="btn" style="background: var(--gold); color: var(--charcoal); padding: 1rem 3rem; font-weight: 600;">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer (CD Logistics) -->
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>HOME DEPOT Juba</h3>
-                    <p>Your trusted partner for premium electronics and perfumes imported directly from Dubai.</p>
+                <div class="footer-column">
+                    <h3>CD Logistics <span style="color: var(--gold);">Construction</span></h3>
+                    <p>Engineering South Sudan’s tomorrow — with integrity, safety and excellence.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <div class="footer-section">
+                <div class="footer-column">
                     <h3>Quick Links</h3>
-                    <ul>
+                    <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#construction">Construction Works</a></li>
+                        <li><a href="services.html#architectural">Architectural Design</a></li>
+                        <li><a href="services.html#logistics">Logistics Services</a></li>
+                        <li><a href="services.html#renovation">Renovation</a></li>
+                        <li><a href="services.html#interior">Interior Decoration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
                     <h3>Contact Info</h3>
-                    <p><i class="fas fa-phone"></i> +211 981 184 646</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Juba, South Sudan</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/211981184646"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Suk Libya next to Charter Bank, Juba, South Sudan</li>
+                        <li><i class="fas fa-phone"></i> +211 926 295 744  |  +211 912 616 971</li>
+                        <li><i class="fas fa-envelope"></i> info@cdconstruction.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8am-5pm</li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 HOME DEPOT Juba. All rights reserved.</p>
+                <p>&copy; 2026 CD Logistics, Construction & General Trading Co. Ltd. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Dark Mode Toggle (optional) -->
+    <div class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
 
     <script src="script.js"></script>
 </body>
