@@ -91,6 +91,37 @@ header {
     color: var(--gold);
 }
 
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: #ffffff; /* Change if navbar is dark */
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 55px;       /* Adjust size if needed */
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Optional: If navbar is fixed at top */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 1000;
+}
 .mobile-menu-btn {
     display: none;
     background: none;
