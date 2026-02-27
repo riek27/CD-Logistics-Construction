@@ -1,9 +1,12 @@
+/* style.css - Complete styling for CD Logistics (charcoal & gold) */
+
 :root {
     --charcoal: #2c2c2c;
     --gold: #bfa06b;
     --white: #ffffff;
     --beige: #f5f2ed;
     --light-gray: #f8f8f8;
+    --dark-overlay: rgba(44, 44, 44, 0.85);
     --transition: all 0.3s ease;
 }
 
@@ -32,6 +35,29 @@ h1, h2, h3, h4, h5, h6 {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    border-radius: 2px;
+    transition: var(--transition);
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    background-color: #a88a5a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Header & Navigation */
@@ -65,6 +91,15 @@ header {
     color: var(--gold);
 }
 
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--charcoal);
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -81,6 +116,12 @@ nav ul li a {
     font-weight: 500;
     transition: var(--transition);
     position: relative;
+    white-space: nowrap;
+}
+
+nav ul li a i {
+    font-size: 0.8rem;
+    margin-left: 4px;
 }
 
 nav ul li a:hover {
@@ -110,7 +151,7 @@ nav ul li a.active::after {
     left: 0;
     background-color: var(--white);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-width: 220px;
+    min-width: 240px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
@@ -135,6 +176,7 @@ nav ul li:hover .dropdown {
     padding: 0.8rem 1.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     white-space: nowrap;
+    font-size: 0.95rem;
 }
 
 .dropdown li a:hover {
@@ -144,15 +186,6 @@ nav ul li:hover .dropdown {
 
 .dropdown li a::after {
     display: none; /* remove underline effect inside dropdown */
-}
-
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--charcoal);
 }
 
 /* Hero Section */
@@ -226,19 +259,16 @@ nav ul li:hover .dropdown {
 }
 
 .hero p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 2.5rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 4rem; /* prevent layout shift */
+    min-height: 4rem;
 }
 
-/* Typing cursor blink */
+/* Typing cursor */
 .cursor {
     display: inline-block;
     width: 3px;
-    margin-left: 2px;
+    margin-left: 4px;
     background-color: var(--gold);
     animation: blink 0.7s infinite;
 }
@@ -246,29 +276,6 @@ nav ul li:hover .dropdown {
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background-color: var(--gold);
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    border: none;
-    border-radius: 2px;
-    transition: var(--transition);
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
-
-.btn:hover {
-    background-color: #a88a5a;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Section Styling */
@@ -402,15 +409,15 @@ section {
 }
 
 .service-content .btn {
-    padding: 0.6rem 1.8rem;
+    padding: 0.7rem 1.8rem;
     font-size: 0.85rem;
 }
 
-/* Why Choose Us (icon grid) */
+/* Why Choose Us (features grid) */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 2.5rem;
+    gap: 2rem;
     text-align: center;
     margin-top: 2rem;
 }
@@ -448,39 +455,14 @@ section {
 }
 
 .feature-item p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #666;
 }
 
 /* Portfolio / Projects Section */
-.portfolio-filters {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    background: none;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    margin: 0 0.5rem 1rem;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    color: var(--charcoal);
-    cursor: pointer;
-    transition: var(--transition);
-    border-bottom: 2px solid transparent;
-}
-
-.filter-btn.active, .filter-btn:hover {
-    color: var(--gold);
-    border-bottom: 2px solid var(--gold);
-}
-
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
@@ -525,7 +507,7 @@ section {
 
 .portfolio-overlay h3 {
     font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     transform: translateY(20px);
     transition: var(--transition);
     transition-delay: 0.1s;
@@ -535,7 +517,7 @@ section {
     transform: translateY(20px);
     transition: var(--transition);
     transition-delay: 0.2s;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     opacity: 0.9;
 }
 
@@ -544,7 +526,7 @@ section {
     transform: translateY(0);
 }
 
-/* Call to Action Section (custom) */
+/* Call to Action Section */
 .cta-section {
     background-size: cover;
     background-position: center;
@@ -554,22 +536,20 @@ section {
     color: white;
 }
 
-.cta-section .cta-overlay {
+.cta-section > div:first-child {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(44, 44, 44, 0.85); /* charcoal overlay */
-    z-index: 1;
+    background: var(--dark-overlay);
 }
 
-.cta-section .cta-content {
+.cta-section > div:last-child {
     position: relative;
     z-index: 2;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 1rem;
 }
 
 .cta-section h2 {
@@ -579,15 +559,17 @@ section {
 }
 
 .cta-section .btn {
-    background-color: var(--gold);
+    background: var(--gold);
     color: var(--charcoal);
     border: none;
     font-size: 1.1rem;
     padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
 }
 
 .cta-section .btn:hover {
-    background-color: #d4b07c;
+    background: #d4b07c;
     transform: translateY(-3px);
 }
 
@@ -612,6 +594,10 @@ footer {
     font-family: 'Playfair Display', serif;
 }
 
+.footer-column h3 span {
+    color: var(--gold);
+}
+
 .footer-column p {
     line-height: 1.8;
     margin-bottom: 1.5rem;
@@ -624,6 +610,9 @@ footer {
 
 .footer-links li {
     margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .footer-links a {
@@ -638,8 +627,9 @@ footer {
 }
 
 .footer-links i {
-    width: 25px;
+    width: 20px;
     color: var(--gold);
+    font-size: 1rem;
 }
 
 .social-links {
@@ -703,7 +693,7 @@ footer {
         font-size: 3rem;
     }
     .hero p {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 }
 
@@ -727,6 +717,8 @@ footer {
         visibility: hidden;
         transition: var(--transition);
         z-index: 999;
+        max-height: 80vh;
+        overflow-y: auto;
     }
 
     nav ul.active {
@@ -738,13 +730,16 @@ footer {
     nav ul li {
         margin: 0.5rem 0;
         width: 100%;
+        margin-left: 0;
     }
 
     nav ul li a {
         display: block;
         padding: 0.5rem 0;
+        width: 100%;
     }
 
+    /* Dropdown mobile behavior */
     .dropdown {
         position: static;
         opacity: 1;
@@ -757,14 +752,21 @@ footer {
         transition: max-height 0.3s ease;
         background-color: var(--beige);
         margin-top: 0.5rem;
+        padding-left: 1rem;
     }
 
-    nav ul li:hover .dropdown {
-        max-height: 500px; /* large enough to show content */
+    nav ul li .dropdown {
+        max-height: 0; /* collapsed by default */
+    }
+
+    nav ul li .dropdown.show,
+    nav ul li .dropdown.active-dropdown {
+        max-height: 500px; /* expanded when toggled */
     }
 
     .dropdown li a {
-        padding-left: 1.5rem;
+        white-space: normal;
+        padding: 0.6rem 1rem;
     }
 
     .about-content {
@@ -789,6 +791,10 @@ footer {
         text-align: center;
     }
 
+    .footer-links li {
+        justify-content: center;
+    }
+
     .social-links {
         justify-content: center;
     }
@@ -800,14 +806,14 @@ footer {
     }
 
     .hero p {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .btn {
         padding: 0.8rem 2rem;
     }
 
-    .section {
+    section {
         padding: 4rem 0;
     }
 
@@ -818,5 +824,33 @@ footer {
 
     .features-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Utility to override inline styles if needed */
+.why-choose .features-grid i {
+    color: var(--gold) !important;
+}
+
+.cta-section .btn {
+    background: var(--gold) !important;
+    color: var(--charcoal) !important;
+    border-radius: 50px !important;
+}
+
+/* Ripple effect (used in script) */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    transform: scale(0);
+    animation: rippleAnim 0.5s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleAnim {
+    to {
+        transform: scale(20);
+        opacity: 0;
     }
 }
