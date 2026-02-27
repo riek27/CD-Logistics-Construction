@@ -685,6 +685,104 @@ section {
     font-size: 0.85rem;
 }
 
+/* Enhanced Services Section for CD Logistics */
+
+/* Service card refinements */
+.service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* ensure equal height cards */
+}
+
+.service-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--charcoal);
+}
+
+.service-content p {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* Service feature list styling */
+.service-content ul {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.5rem;
+    list-style: none;
+}
+
+.service-content ul li {
+    margin-bottom: 0.6rem;
+    position: relative;
+    padding-left: 1.8rem;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.service-content ul li::before {
+    content: "✓";
+    color: var(--gold);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Alternatively, if using Font Awesome check circles */
+.service-content ul li i {
+    color: var(--gold);
+    margin-right: 0.5rem;
+    width: 1.2rem;
+}
+
+/* Button inside service card */
+.service-content .btn {
+    margin-top: auto; /* push button to bottom */
+    align-self: flex-start; /* or center if preferred */
+    padding: 0.7rem 1.8rem;
+    font-size: 0.85rem;
+    background-color: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.service-content .btn:hover {
+    background-color: #a88a5a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .services-grid {
+        gap: 1.5rem;
+    }
+    
+    .service-content ul {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .service-content ul li {
+        font-size: 0.9rem;
+    }
+}
+
 /* Why Choose Us (features grid) */
 .features-grid {
     display: grid;
