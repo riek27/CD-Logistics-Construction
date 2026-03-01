@@ -1596,29 +1596,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Dark Mode Toggle (optional) */
-.dark-mode-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--charcoal);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    cursor: pointer;
-    z-index: 99;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: var(--transition);
-}
-
-.dark-mode-toggle:hover {
-    background-color: var(--gold);
-    transform: scale(1.1);
-}
 
 /* Mobile Responsive */
 @media (max-width: 992px) {
@@ -1671,6 +1648,269 @@ footer {
         padding: 0.5rem 0;
         width: 100%;
     }
+
+    /* ---------- GLOBAL RESPONSIVE TWEAKS ---------- */
+:root {
+    --container-padding: 15px;  /* consistent padding */
+}
+
+.container {
+    width: 100%;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------- TYPOGRAPHY THAT SCALES ---------- */
+h1 { font-size: clamp(2.2rem, 8vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 6vw, 3rem); }
+h3 { font-size: clamp(1.4rem, 5vw, 2.2rem); }
+p, li, a { font-size: clamp(1rem, 4vw, 1.1rem); }
+
+/* ---------- HEADER & NAVIGATION (ULTRA RESPONSIVE) ---------- */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0.8rem 1rem;
+    }
+    .logo img {
+        max-height: 50px;  /* smaller logo on tablets */
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+        padding: 12px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+    .mobile-menu-btn i {
+        font-size: 1.8rem;
+        color: var(--charcoal);
+    }
+
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: stretch;  /* full width */
+        padding: 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+        z-index: 999;
+        max-height: 85vh;
+        overflow-y: auto;
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    nav ul.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 1.2rem 1.5rem;  /* larger touch area */
+        width: 100%;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--charcoal);
+    }
+
+    nav ul li a i.fa-chevron-down {
+        float: right;
+        transition: transform 0.3s;
+    }
+
+    /* Dropdown inside mobile menu */
+    .dropdown {
+        position: static;
+        background-color: var(--beige);
+        box-shadow: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding-left: 1rem;
+        border-left: 3px solid var(--gold);
+    }
+
+    .dropdown.show {
+        max-height: 500px;  /* enough for all items */
+    }
+
+    .dropdown li a {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .dropdown li:last-child a {
+        border-bottom: none;
+    }
+}
+
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
+    .logo img {
+        max-height: 40px;
+    }
+
+    nav ul li a {
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    .dropdown li a {
+        padding: 0.9rem 1.2rem;
+    }
+}
+
+/* ---------- HERO SECTION ---------- */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: clamp(2.5rem, 7vw, 3.5rem);
+    }
+    .hero p {
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
+    }
+    .hero-content {
+        padding: 0 20px;
+    }
+    .btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px;  /* shorter on mobile */
+    }
+    .hero-content {
+        text-align: center;
+        width: 100%;
+    }
+    .hero h1 {
+        margin-bottom: 1rem;
+    }
+    .hero p {
+        margin-bottom: 2rem;
+    }
+    .btn {
+        display: inline-block;
+        width: auto;
+        min-width: 200px;  /* consistent width */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 400px;
+    }
+    .hero h1 {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .btn {
+        width: 100%;       /* full-width button on tiny screens */
+        max-width: 280px;
+    }
+}
+
+/* ---------- ABOUT SECTION ---------- */
+@media (max-width: 992px) {
+    .about-content {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+    .about-text, .about-image {
+        width: 100%;
+    }
+    .about-image img {
+        width: 100%;
+        height: auto;
+        max-height: 350px;
+        object-fit: cover;
+    }
+    .section-title h2 {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+    }
+}
+
+/* ---------- SERVICES CARDS ---------- */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .service-card {
+        display: flex;
+        flex-direction: column;
+    }
+    .service-image img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    .service-content {
+        padding: 1.5rem;
+    }
+}
+
+/* ---------- PAGE HEADER (services, about, etc.) ---------- */
+@media (max-width: 768px) {
+    .page-header-content h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+    .page-header-content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* ---------- GENERAL SPACING ---------- */
+@media (max-width: 768px) {
+    section {
+        padding: 50px 0;
+    }
+    .section-title {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 40px 0;
+    }
+}
 
     /* Dropdown mobile behavior */
     .dropdown {
