@@ -170,46 +170,51 @@
       width: 100%;
     }
 
-    /* DROPDOWN (clean, same as style.css) */
+    /* ADD THIS RULE – critical for desktop dropdown positioning */
+nav ul li {
+    position: relative;
+}
+
+/* ---------- DROPDOWN (clean, same as style.css) ---------- */
+.dropdown {
+    background-color: var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 240px;
+    z-index: 10;
+    border-radius: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown li {
+    margin: 0;
+    width: 100%;
+}
+
+.dropdown li a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.dropdown li a:hover {
+    background-color: var(--beige);
+    color: var(--gold);
+}
+
+.dropdown li a::after {
+    display: none;
+}
+
+/* Desktop dropdown (hover) */
+@media (min-width: 769px) {
     .dropdown {
-      background-color: var(--white);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      min-width: 240px;
-      z-index: 10;
-      border-radius: 2px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .dropdown li {
-      margin: 0;
-      width: 100%;
-    }
-
-    .dropdown li a {
-      display: block;
-      padding: 0.8rem 1.5rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      white-space: nowrap;
-      font-size: 0.95rem;
-      color: var(--charcoal);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .dropdown li a:hover {
-      background-color: var(--beige);
-      color: var(--gold);
-    }
-
-    .dropdown li a::after {
-      display: none;
-    }
-
-    /* Desktop dropdown */
-    @media (min-width: 769px) {
-      .dropdown {
         position: absolute;
         top: 100%;
         left: 0;
@@ -217,13 +222,36 @@
         visibility: hidden;
         transform: translateY(10px);
         transition: var(--transition);
-      }
-      nav ul li:hover .dropdown {
+        pointer-events: none; /* prevents accidental hover on hidden */
+    }
+    nav ul li:hover .dropdown {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
-      }
+        pointer-events: auto;
     }
+}
+
+/* Mobile dropdown (toggle with .show class) */
+@media (max-width: 768px) {
+    .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background-color: var(--beige);
+        margin-top: 0.5rem;
+        padding-left: 1rem;
+    }
+    .dropdown.show {
+        max-height: 500px; /* enough to show all items */
+    }
+}
 
     /* Mobile / Tablet */
     @media (max-width: 768px) {
@@ -648,35 +676,35 @@
 <body>
   <!-- Header & Navigation (light version, matches style.css) -->
   <header>
-    <div class="container nav-container">
-      <a href="index.html" class="logo">
-        <img src="assets/cdlogo.jpeg" alt="CD Logistics Logo">
-      </a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
-      </button>
-      <nav id="mainNav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li>
-            <a href="services.html" class="active">Services <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown" id="servicesDropdown">
-              <li><a href="#construction">Construction Works</a></li>
-              <li><a href="#architectural">Architectural & Engineering Design</a></li>
-              <li><a href="#logistics">Logistics Services</a></li>
-              <li><a href="#renovation">Renovation & Remodeling</a></li>
-              <li><a href="#interior">Interior Decoration</a></li>
-              <li><a href="#maintenance">Maintenance Services</a></li>
-              <li><a href="#property">Property Management</a></li>
-            </ul>
-          </li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div class="container nav-container">
+    <a href="index.html" class="logo">
+      <img src="assets/cdlogo.jpeg" alt="CD Logistics Logo">
+    </a>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="services.html" class="active">Services <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown" id="servicesDropdown">
+            <li><a href="services.html#construction">Construction Works</a></li>
+            <li><a href="services.html#architectural">Architectural & Engineering Design</a></li>
+            <li><a href="services.html#logistics">Logistics Services</a></li>
+            <li><a href="services.html#renovation">Renovation & Remodeling</a></li>
+            <li><a href="services.html#interior">Interior Decoration</a></li>
+            <li><a href="services.html#maintenance">Maintenance Services</a></li>
+            <li><a href="services.html#property">Property Management</a></li>
+          </ul>
+        </li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
   <!-- Page Header -->
   <section class="page-header">
@@ -908,36 +936,112 @@
     <i class="fas fa-moon"></i>
   </div>
 
-  <!-- Simple JS for mobile menu & dropdown -->
   <script>
-    (function() {
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const nav = document.getElementById('mainNav');
-      if (mobileBtn) {
-        mobileBtn.addEventListener('click', function() {
-          nav.classList.toggle('active');
-        });
-      }
+(function() {
+    'use strict';
 
-      // Mobile dropdown toggle: click on parent link with chevron
-      const servicesLink = document.querySelector('nav ul li a[href="services.html"]');
-      const dropdown = document.getElementById('servicesDropdown');
-      if (window.innerWidth <= 768 && servicesLink && dropdown) {
-        servicesLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          dropdown.classList.toggle('show');
-        });
-      }
+    // ----- Mobile menu toggle -----
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
 
-      // Adjust for resize: reset dropdown on desktop
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-          if (dropdown) dropdown.classList.remove('show');
-        } else {
-          // re-attach event if needed (but listener persists)
+    if (mobileBtn && mainNav) {
+        mobileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mainNav.classList.toggle('active');
+            // Update icon if needed (your mobile menu button uses <i> inside)
+            const icon = mobileBtn.querySelector('i');
+            if (icon) {
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    }
+
+    // ----- Helper to close mobile menu and all dropdowns -----
+    function closeMobileMenu() {
+        if (mainNav && mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            const icon = mobileBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         }
-      });
-    })();
-  </script>
+        // Close any open dropdowns
+        document.querySelectorAll('.dropdown.show').forEach(drop => {
+            drop.classList.remove('show');
+        });
+    }
+
+    // ----- Dropdown handling (Services link) -----
+    const servicesLink = document.querySelector('nav ul li a[href="services.html"]');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+
+    function handleResize() {
+        if (window.innerWidth > 768) {
+            // Desktop: remove any .show class (hover takes over)
+            if (servicesDropdown) servicesDropdown.classList.remove('show');
+        } else {
+            // Mobile: ensure click behavior is attached (already attached below)
+        }
+    }
+
+    if (servicesLink && servicesDropdown) {
+        servicesLink.addEventListener('click', function(e) {
+            // Only intercept on mobile
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Do not navigate
+                // Close other dropdowns if any (but there's only one)
+                // Toggle this dropdown
+                servicesDropdown.classList.toggle('show');
+            }
+            // On desktop, let the link navigate normally (or use hover)
+        });
+    }
+
+    // ----- Close menu when clicking any other nav link (including dropdown items) -----
+    const allNavLinks = document.querySelectorAll('nav ul li a');
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // If this is the services link on mobile, we already handled it above (prevented)
+            if (window.innerWidth <= 768 && link === servicesLink) {
+                return; // already handled
+            }
+            // For all other links, close the mobile menu
+            closeMobileMenu();
+            // Let the navigation happen normally
+        });
+    });
+
+    // ----- Close menu when clicking outside -----
+    document.addEventListener('click', function(event) {
+        if (mainNav && mainNav.classList.contains('active')) {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnBtn = mobileBtn && mobileBtn.contains(event.target);
+            if (!isClickInsideNav && !isClickOnBtn) {
+                closeMobileMenu();
+            }
+        }
+    });
+
+    // ----- Adjust on resize -----
+    window.addEventListener('resize', function() {
+        handleResize();
+        // If resizing to desktop while menu is open, close it
+        if (window.innerWidth > 768 && mainNav && mainNav.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Initial call
+    handleResize();
+
+})();
+</script>
 </body>
 </html>
