@@ -84,41 +84,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeMobileMenu();
             }
         });
-
-        // Close menu when any nav link (including dropdown items) is clicked
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                closeMobileMenu();
-            });
-        });
     }
 
-    /* ==================== DROPDOWN HANDLING FOR MOBILE ==================== */
-    // On mobile, clicking the parent link (Services) toggles the dropdown
-    const serviceItems = document.querySelectorAll('nav ul li'); // all top-level li
-    serviceItems.forEach(li => {
-        const link = li.querySelector('a');
-        const dropdown = li.querySelector('.dropdown');
-        if (dropdown && link) {
-            // For desktop, hover works; for mobile, we use click toggle
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault(); // Prevent navigation on mobile
-                    // Close other open dropdowns for better UX
-                    serviceItems.forEach(otherLi => {
-                        if (otherLi !== li) {
-                            const otherDropdown = otherLi.querySelector('.dropdown');
-                            if (otherDropdown) {
-                                otherDropdown.classList.remove('show');
-                            }
-                        }
-                    });
-                    // Toggle current dropdown using a class
-                    dropdown.classList.toggle('show');
-                }
-            });
-        }
+    /* ==================== IMPROVED DROPDOWN HANDLING ==================== */
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const parentLi = this.closest('li');
+            const hasDropdown = parentLi && parentLi.querySelector('.dropdown');
+
+            // On mobile, if this link is the parent of a dropdown, toggle it
+            if (window.innerWidth <= 768 && hasDropdown) {
+                e.preventDefault(); // Prevent navigation
+                
+                // Close other dropdowns
+                navLinks.forEach(otherLink => {
+                    const otherLi = otherLink.closest('li');
+                    if (otherLi && otherLi !== parentLi) {
+                        const otherDropdown = otherLi.querySelector('.dropdown');
+                        if (otherDropdown) otherDropdown.classList.remove('show');
+                    }
+                });
+
+                // Toggle current dropdown
+                const dropdown = parentLi.querySelector('.dropdown');
+                if (dropdown) dropdown.classList.toggle('show');
+            } else {
+                // For all other links (including dropdown items), close mobile menu and navigate
+                closeMobileMenu();
+                // Navigation happens naturally (no preventDefault)
+            }
+        });
     });
 
     // Reset dropdown classes when resizing to desktop
