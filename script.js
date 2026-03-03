@@ -212,3 +212,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+const contactForm = document.getElementById("contactForm");
+const formSuccess = document.getElementById("formSuccess");
+
+contactForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submit
+
+    const formData = new FormData(contactForm);
+
+    fetch("/", {
+        method: "POST",
+        body: formData
+    })
+    .then(() => {
+        // Show the message with fade-in
+        formSuccess.classList.add("show");
+
+        // Clear the form fields
+        contactForm.reset();
+
+        // Hide the message after 5 seconds with fade-out
+        setTimeout(() => {
+            formSuccess.classList.remove("show");
+        }, 5000);
+    })
+    .catch((error) => alert("Oops! There was a problem: " + error));
+});
