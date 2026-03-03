@@ -97,14 +97,26 @@ header {
     object-fit: contain;
 }
 
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: var(--charcoal);
-    padding: 0.5rem;
+/* ---------- ULTIMATE FIXES (DO NOT REMOVE) ---------- */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block !important;
+    }
+    nav.active {
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+    }
+}
+.cursor {
+    display: inline-block;
+    width: 3px;
+    margin-left: 4px;
+    background-color: var(--gold);
+    animation: blink 0.7s infinite;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 nav ul {
