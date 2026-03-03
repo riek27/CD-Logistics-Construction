@@ -1,8 +1,8 @@
-// script.js - ultra simple, works everywhere
+// script.js - DEFINITIVE WORKING VERSION
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    // ========== TYPING ANIMATION (only on homepage) ==========
+    // ========== TYPING ANIMATION (only on pages with #typing-text) ==========
     const typedText = document.getElementById('typing-text');
     if (typedText) {
         const words = ['Construction', 'Architecture', 'Logistics', 'Property Management'];
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         type();
     }
 
-    // ========== MOBILE MENU TOGGLE ==========
+    // ========== MOBILE MENU ==========
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('nav');
     if (menuBtn && nav) {
@@ -42,23 +42,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.className = 'fas fa-times';
             } else {
                 icon.className = 'fas fa-bars';
+                // Also close any open dropdowns
+                document.querySelectorAll('.dropdown.show').forEach(d => d.classList.remove('show'));
             }
         });
 
-        // Close menu when clicking a link (except dropdown parent)
-        nav.querySelectorAll('a').forEach(link => {
+        // Handle dropdowns on mobile
+        nav.querySelectorAll('ul > li > a').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
-                    // If this link has a dropdown, don't close the whole menu
-                    if (this.nextElementSibling && this.nextElementSibling.classList.contains('dropdown')) {
-                        e.preventDefault(); // Prevent navigation on mobile
+                    const dropdown = this.nextElementSibling;
+                    if (dropdown && dropdown.classList.contains('dropdown')) {
+                        e.preventDefault(); // Don't navigate
                         // Toggle this dropdown
-                        this.nextElementSibling.classList.toggle('show');
-                        return;
+                        dropdown.classList.toggle('show');
+                        // Close other dropdowns
+                        nav.querySelectorAll('.dropdown').forEach(d => {
+                            if (d !== dropdown) d.classList.remove('show');
+                        });
+                    } else {
+                        // Normal link: close menu after navigation
+                        setTimeout(() => {
+                            nav.classList.remove('active');
+                            menuBtn.querySelector('i').className = 'fas fa-bars';
+                        }, 100);
                     }
-                    // Normal link: close menu after navigation
-                    nav.classList.remove('active');
-                    menuBtn.querySelector('i').className = 'fas fa-bars';
                 }
             });
         });
@@ -68,16 +76,31 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nav.classList.contains('active') && !nav.contains(e.target) && !menuBtn.contains(e.target)) {
                 nav.classList.remove('active');
                 menuBtn.querySelector('i').className = 'fas fa-bars';
+                document.querySelectorAll('.dropdown.show').forEach(d => d.classList.remove('show'));
+            }
+        });
+
+        // On resize, close menu if switching to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                menuBtn.querySelector('i').className = 'fas fa-bars';
+                document.querySelectorAll('.dropdown.show').forEach(d => d.classList.remove('show'));
             }
         });
     }
 
-    // ========== RESIZE: close menu if switching to desktop ==========
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && nav && nav.classList.contains('active')) {
-            nav.classList.remove('active');
-            menuBtn.querySelector('i').className = 'fas fa-bars';
-        }
+    // ========== SMOOTH SCROLL FOR HASH LINKS ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || !href) return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
 });
     /* ==================== NETLIFY FORM HANDLER WITH SUCCESS POPUP ==================== */
