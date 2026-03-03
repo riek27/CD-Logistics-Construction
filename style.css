@@ -1305,3 +1305,27 @@ footer {
     transform: translateY(0);      /* Move to natural position */
     pointer-events: auto;
 }
+
+/* ---------- FIXES FOR MOBILE MENU & TYPING ---------- */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block !important;
+        z-index: 2000;
+    }
+    nav.active {
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+    }
+}
+/* Ensure typing cursor is visible */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    margin-left: 4px;
+    background-color: #bfa06b;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
