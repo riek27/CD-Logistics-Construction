@@ -1404,40 +1404,154 @@ nav ul li a.active::after {
     }
 }
 
-/* -----------------------------------------------
-   Portfolio / Projects Section - Clean & Mobile-Friendly
-   ----------------------------------------------- */
+/* ==============================================
+   PROJECTS PAGE – CLEAN & MOBILE-OPTIMIZED
+   ============================================== */
 
-/* Grid layout – responsive without media queries */
+/* ---------- Page Header ---------- */
+.page-header {
+  position: relative;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.page-header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.page-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.page-header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.page-header-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.page-header-content p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  opacity: 0.9;
+}
+
+/* ---------- Section Titles ---------- */
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #333;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #c9a86c; /* Gold accent */
+  margin: 0.5rem auto 0;
+}
+
+.section-title p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* ---------- Portfolio Filters ---------- */
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  background: none;
+  border: 2px solid #e0e0e0;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: #c9a86c;
+  border-color: #c9a86c;
+  color: #fff;
+}
+
+/* ---------- Portfolio Grid – CRITICAL PART ---------- */
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  margin: 2rem 0;
+  margin: 2rem 0 3rem;
 }
 
-/* Project card */
+/* Project Card */
 .portfolio-item {
   position: relative;
   overflow: hidden;
-  border-radius: 4px;               /* Slightly softer corners */
-  background-color: #f5f5f5;         /* Light placeholder while image loads */
-  aspect-ratio: 4 / 3;                /* Consistent rectangle */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease;
+  border-radius: 8px;
+  background-color: #f0f0f0; /* Light gray placeholder */
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .portfolio-item:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
 }
 
-/* Image */
+/* Image – force display with fallback */
 .portfolio-item img {
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: cover;                  /* Cover the area without distortion */
+  display: block !important;        /* Override any hiding */
+  object-fit: cover;
   transition: transform 0.5s ease;
+  background-color: #f0f0f0;        /* Same as card bg while loading */
+}
+
+/* If image fails to load, browser shows broken icon – we can improve with pseudo-element */
+.portfolio-item img::before {
+  display: none; /* Not widely supported, but we rely on background color */
 }
 
 /* Overlay – always visible on mobile, appears on hover for desktop */
@@ -1447,17 +1561,17 @@ nav ul li a.active::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.85));
+  background: linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.85));
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 1.5rem;
   color: #fff;
-  opacity: 1;                          /* Visible by default (mobile first) */
-  transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+  opacity: 1;                         /* Always visible on mobile */
+  transition: opacity 0.3s ease;
 }
 
-/* On desktop, hide overlay until hover */
+/* On devices with hover (desktop), hide overlay initially */
 @media (hover: hover) and (pointer: fine) {
   .portfolio-overlay {
     opacity: 0;
@@ -1470,34 +1584,23 @@ nav ul li a.active::after {
   }
 }
 
-/* Overlay text styling */
+/* Overlay text */
 .portfolio-overlay h3 {
   font-size: 1.3rem;
-  margin-bottom: 0.3rem;
-  transform: translateY(0);            /* No animation on mobile, but we add a subtle one for desktop */
-  transition: transform 0.3s ease;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .portfolio-overlay p {
   font-size: 0.9rem;
-  opacity: 0.9;
+  opacity: 0.95;
   margin: 0;
-  transform: translateY(0);
-  transition: transform 0.3s ease 0.05s;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-/* Optional: small lift effect on hover for desktop */
-@media (hover: hover) and (pointer: fine) {
-  .portfolio-item:hover .portfolio-overlay h3 {
-    transform: translateY(-4px);
-  }
-  .portfolio-item:hover .portfolio-overlay p {
-    transform: translateY(-4px);
-  }
-}
-
-/* Extra small screens: single column with comfortable tap targets */
-@media (max-width: 480px) {
+/* Small screens adjustments */
+@media (max-width: 600px) {
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -1508,8 +1611,151 @@ nav ul li a.active::after {
   .portfolio-overlay h3 {
     font-size: 1.2rem;
   }
+  .portfolio-overlay p {
+    font-size: 0.85rem;
+  }
 }
 
+/* ---------- Featured Project Showcase ---------- */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.about-text ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-text li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.about-text li::before {
+  content: '✓';
+  color: #c9a86c;
+  font-weight: bold;
+  margin-right: 0.8rem;
+}
+
+.about-image {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- Call to Action ---------- */
+.cta-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 1rem;
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.cta-section .btn {
+  display: inline-block;
+  background: #c9a86c;
+  color: #2c2c2c;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-section .btn:hover {
+  background: #b89250;
+  transform: scale(1.05);
+}
+
+/* ---------- Footer (already in your style, but ensure no conflict) ---------- */
+footer {
+  background: #1a1a1a;
+  color: #aaa;
+  padding: 3rem 0 1rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-column h3 {
+  color: #fff;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.7rem;
+}
+
+.footer-links a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #c9a86c;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #333;
+  color: #fff;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.social-link:hover {
+  background: #c9a86c;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+}
 /* Call to Action Section */
 .cta-section {
     background-size: cover;
