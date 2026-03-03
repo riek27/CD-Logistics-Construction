@@ -1374,26 +1374,8 @@ select.form-control {
     }
 }
 
-/* ==================== NETLIFY SUCCESS MESSAGE ==================== */
-
-.form-success {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    background: #28a745;
-    color: #ffffff;
-    padding: 15px 25px;
-    border-radius: 6px;
+.form-message {
+    margin-top: 15px;
+    color: #28a745;
     font-weight: 600;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.5s ease;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-.form-success.show {
-    opacity: 1;
-    transform: translateY(0);
 }
