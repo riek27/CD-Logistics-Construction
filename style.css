@@ -942,8 +942,346 @@ footer {
     margin-bottom: 3rem;
 }
 
+/* ---------- PROJECTS PAGE: FILTER BUTTONS ---------- */
+.portfolio-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
 
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--charcoal);
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+}
 
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--gold);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* ---------- PROJECTS PAGE: GRID LAYOUT (already in style.css, but ensure consistency) ---------- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Optional: add a bit more spacing for many items */
+@media (min-width: 1200px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Ensure overlay text is always readable */
+.portfolio-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+/* If you want to hide items during filtering (JS will handle) – no extra CSS needed */
+
+/* ---------- CONTACT PAGE ---------- */
+.contact {
+    padding: 6rem 0;
+    background-color: var(--white);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Contact Information Side */
+.contact-info {
+    background-color: var(--light-gray);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--charcoal);
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.contact-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--gold);
+}
+
+.contact-details {
+    margin-bottom: 2rem;
+}
+
+.contact-detail {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.3rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+
+.contact-detail:hover .contact-icon {
+    background-color: var(--gold);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.contact-detail h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--charcoal);
+}
+
+.contact-detail p {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 0.2rem;
+}
+
+/* Quick action buttons (already have .btn styles, but we can refine) */
+.contact-info .btn {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* Social links inside contact info */
+.contact-info .social-links {
+    margin-top: 2rem;
+    justify-content: flex-start;
+}
+
+/* Contact Form */
+.contact-form {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    font-size: 0.95rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: var(--light-gray);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(191, 160, 107, 0.1);
+    background-color: var(--white);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232c2c2c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.contact-form .btn {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+/* Form success message (hidden by default) */
+.form-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    display: none; /* shown via JS after successful submission */
+}
+
+.form-success.show {
+    display: block;
+}
+
+/* Netlify honeypot field – hide visually */
+.hidden {
+    display: none;
+}
+
+/* Map Section (reuse about section but adjust padding) */
+.about.map-section {
+    padding: 0;
+}
+
+.map-container {
+    height: 400px;
+    width: 100%;
+    background-color: var(--beige);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.map-directions {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.map-directions p {
+    color: var(--charcoal);
+    margin-bottom: 0.8rem;
+}
+
+.map-directions i {
+    color: var(--gold);
+    margin-right: 0.5rem;
+}
+
+.map-directions .btn {
+    background-color: var(--charcoal);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+}
+
+.map-directions .btn:hover {
+    background-color: var(--gold);
+    color: var(--charcoal);
+}
+
+/* Final CTA section (if you keep it) */
+.contact-cta {
+    background-color: var(--light-gray);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.contact-cta h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-cta .btn {
+    margin: 0.5rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        padding: 2rem;
+    }
+    
+    .contact-form {
+        padding: 2rem;
+    }
+    
+    .contact-detail {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .contact-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info .btn {
+        width: 100%;
+        margin-right: 0;
+        justify-content: center;
+    }
+    
+    .contact-info .social-links {
+        justify-content: center;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+}
+
+/* Ensure footer stays consistent */
+footer {
+    margin-top: 0; /* already defined */
+}
 
 .form-success {
     display: block;               /* Keep it in flow for animation */
