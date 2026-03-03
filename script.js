@@ -54,39 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         type();
     }
 
-  /* ==================== NETLIFY FORM HANDLER ==================== */
-const contactForm = document.getElementById("contactForm");
-const formSuccess = document.getElementById("formSuccess");
-
-if (contactForm && formSuccess) {
-    contactForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(contactForm);
-
-        fetch("/", {
-            method: "POST",
-            headers: { "Accept": "application/json" },
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                formSuccess.classList.add("show");
-                contactForm.reset();
-
-                setTimeout(() => {
-                    formSuccess.classList.remove("show");
-                }, 5000);
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
-        })
-        .catch(() => {
-            alert("Network error. Please try again.");
-        });
-    });
-}
-
+  
     // ---------- MOBILE MENU TOGGLE ----------
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('nav');
