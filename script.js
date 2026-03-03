@@ -220,15 +220,15 @@ const formMessage = document.getElementById('formMessage');
 
 if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Stop normal POST / redirect
+        e.preventDefault(); // Stop default browser submission
 
         // Collect form data
         const formData = new FormData(contactForm);
-        
-        // Ensure honeypot field is included (it's already in the form)
-        // Add the form-name field (required by Netlify, already in HTML hidden input)
+
+        // Ensure honeypot field is included (already in form)
 
         try {
+            // Send as application/x-www-form-urlencoded (Netlify expects this)
             const response = await fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -238,10 +238,10 @@ if (contactForm) {
             if (response.ok) {
                 // Show success message
                 formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-                formMessage.classList.remove('error');
+                formMessage.className = 'form-message success';
                 formMessage.style.display = 'block';
 
-                // Reset the form
+                // Reset form fields
                 contactForm.reset();
 
                 // Hide message after 5 seconds
@@ -249,19 +249,19 @@ if (contactForm) {
                     formMessage.style.display = 'none';
                 }, 5000);
             } else {
-                throw new Error('Form submission failed');
+                // Server responded with error
+                throw new Error('Server responded with status: ' + response.status);
             }
         } catch (error) {
+            console.error('Form submission error:', error);
             // Show error message
             formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
-            formMessage.classList.add('error');
+            formMessage.className = 'form-message error';
             formMessage.style.display = 'block';
 
             setTimeout(() => {
                 formMessage.style.display = 'none';
-                formMessage.classList.remove('error');
             }, 5000);
         }
     });
 }
-
