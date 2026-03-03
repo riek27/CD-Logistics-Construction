@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header & Navigation (CD Logistics) -->
+    <!-- Header & Navigation -->
     <header>
         <div class="container nav-container">
             <a href="index.html" class="logo">
-    <img src="assets/cdlogo.jpeg" alt="CD Logistics Logo">
-          </a>
+                <img src="assets/cdlogo.jpeg" alt="CD Logistics Logo">
+            </a>
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
@@ -59,6 +59,7 @@
                 <p>We're ready to discuss your project and provide expert solutions</p>
             </div>
             <div class="contact-container">
+                <!-- Contact Information Block -->
                 <div class="contact-info">
                     <h3>Contact Information</h3>
                     <div class="contact-details">
@@ -101,7 +102,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CTA Buttons for quick contact -->
+
+                    <!-- Quick Contact Buttons -->
                     <div style="display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;">
                         <a href="tel:+211912616971" class="btn" style="background: var(--gold); color: var(--charcoal); display: inline-flex; align-items: center; gap: 0.5rem;">
                             <i class="fas fa-phone-alt"></i> Call Us
@@ -110,87 +112,82 @@
                             <i class="fas fa-envelope"></i> Send Email
                         </a>
                     </div>
+
+                    <!-- Social Links -->
                     <div class="social-links">
-                       <a href="https://www.facebook.com/profile.php?id=100065234742107" 
-                   class="social-link" 
-                    target="_blank" 
-                rel="noopener noreferrer">
-                 <i class="fab fa-facebook-f"></i>
-                 </a>
-                        <a href="https://wa.me/211912616971" 
-                      class="social-link" 
-                  target="_blank" 
-               rel="noopener noreferrer">
-               <i class="fab fa-whatsapp"></i>
-                   </a>
-                       
+                        <a href="https://www.facebook.com/profile.php?id=100065234742107" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/211912616971" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
-       <div class="contact-form">
-  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
-    
-    <!-- Required hidden field for Netlify -->
-    <input type="hidden" name="form-name" value="contact">
 
-    <!-- Honeypot anti-spam field -->
-    <p style="display:none;">
-      <label>Don’t fill this out if you're human:
-        <input name="bot-field">
-      </label>
-    </p>
+                <!-- Contact Form (Netlify) -->
+                <div class="contact-form">
+                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+                        <!-- Required hidden field for Netlify -->
+                        <input type="hidden" name="form-name" value="contact">
 
-    <div class="form-group">
-      <label for="name">Full Name *</label>
-      <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
-    </div>
+                        <!-- Honeypot anti-spam field -->
+                        <p style="display:none;">
+                            <label>Don’t fill this out if you're human:
+                                <input name="bot-field">
+                            </label>
+                        </p>
 
-    <div class="form-group">
-      <label for="email">Email Address *</label>
-      <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
-    </div>
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                        </div>
 
-    <div class="form-group">
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your Phone">
-    </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+                        </div>
 
-    <div class="form-group">
-      <label for="service">Service Interest</label>
-      <select id="service" name="service" class="form-control">
-        <option value="">Select a service</option>
-        <option value="construction">Construction Works</option>
-        <option value="architectural">Architectural & Engineering Design</option>
-        <option value="logistics">Logistics Services</option>
-        <option value="renovation">Renovation & Remodeling</option>
-        <option value="interior">Interior Decoration</option>
-        <option value="maintenance">Maintenance Services</option>
-        <option value="property">Property Management</option>
-        <option value="other">Other</option>
-      </select>
-    </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your Phone">
+                        </div>
 
-    <div class="form-group">
-      <label for="message">Your Message *</label>
-      <textarea id="message" name="message" class="form-control" placeholder="Tell us about your project or inquiry" rows="5" required></textarea>
-    </div>
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" name="service" class="form-control">
+                                <option value="">Select a service</option>
+                                <option value="construction">Construction Works</option>
+                                <option value="architectural">Architectural & Engineering Design</option>
+                                <option value="logistics">Logistics Services</option>
+                                <option value="renovation">Renovation & Remodeling</option>
+                                <option value="interior">Interior Decoration</option>
+                                <option value="maintenance">Maintenance Services</option>
+                                <option value="property">Property Management</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
 
-    <button type="submit" class="btn">Send Message</button>
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Tell us about your project or inquiry" rows="5" required></textarea>
+                        </div>
 
-    <!-- Simple Thank You Message -->
-    <p id="formMessage" class="form-message" style="display:none;">
-      Thank you! Your message has been sent successfully.
-    </p>
+                        <button type="submit" class="btn">Send Message</button>
 
-  </form>
-</div>
- </div>
+                        <!-- Success Message (hidden by default, shown via JS) -->
+                        <p id="formMessage" class="form-message" style="display:none;">
+                            Thank you! Your message has been sent successfully.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Map Section (Suk Libya, Juba) -->
+    <!-- Map Section -->
     <section class="about" style="padding: 0;">
         <div class="container">
             <div style="height: 400px; width: 100%; background-color: #f5f2ed; border-radius: 2px; overflow: hidden;">
-                <!-- Google Maps Embed for Suk Libya, Juba (approximate) -->
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.746112574234!2d31.580469!3d4.842000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNTAnMzEuMiJOIDMxwrAzNCczOS4wIkU!5e0!3m2!1sen!2s!4v1687458963254!5m2!1sen!2s" 
                     width="100%" 
@@ -208,7 +205,7 @@
         </div>
     </section>
 
-    <!-- Why Work With Us (optional CTA) -->
+    <!-- Call to Action -->
     <section class="services" style="padding: 4rem 0;">
         <div class="container">
             <div class="section-title">
@@ -217,7 +214,7 @@
             </div>
             <div style="text-align: center;">
                 <a href="tel:+211926295744" class="btn" style="margin-right: 1rem; background: var(--gold); color: var(--charcoal);"><i class="fas fa-phone-alt"></i> Call Us Now</a>
-                <a href="mailto:info@cdconstruction.com" class="btn" style="background: var(--charcoal); color: var(--white);"><i class="fas fa-envelope"></i> Email Us</a>
+                <a href="mailto:info@cdconstructionltd.com" class="btn" style="background: var(--charcoal); color: var(--white);"><i class="fas fa-envelope"></i> Email Us</a>
             </div>
         </div>
     </section>
@@ -230,19 +227,12 @@
                     <h3>CD Logistics <span style="color: var(--gold);">Construction</span></h3>
                     <p>Engineering South Sudan’s tomorrow — with integrity, safety and excellence.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=100065234742107" 
-                   class="social-link" 
-                    target="_blank" 
-                rel="noopener noreferrer">
-                 <i class="fab fa-facebook-f"></i>
-                 </a>
-                        <a href="https://wa.me/211912616971" 
-                      class="social-link" 
-                  target="_blank" 
-               rel="noopener noreferrer">
-               <i class="fab fa-whatsapp"></i>
-                   </a>
-                       
+                        <a href="https://www.facebook.com/profile.php?id=100065234742107" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/211912616971" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -269,16 +259,15 @@
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-map-marker-alt"></i> Suk Libya next to Charter Bank, Juba, South Sudan</li>
-                       <li>
-  <i class="fas fa-phone"></i> 
-  <a href="tel:+211926295744">+211 926 295 744</a>  |  
-  <a href="tel:+211912616971">+211 912 616 971</a>
-</li>
-
-<li>
-  <i class="fas fa-envelope"></i> 
-  <a href="mailto:info@cdconstructionltd.com">info@cdconstructionltd.com</a>
-</li>
+                        <li>
+                            <i class="fas fa-phone"></i> 
+                            <a href="tel:+211926295744">+211 926 295 744</a>  |  
+                            <a href="tel:+211912616971">+211 912 616 971</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i> 
+                            <a href="mailto:info@cdconstructionltd.com">info@cdconstructionltd.com</a>
+                        </li>
                         <li><i class="fas fa-clock"></i> Mon-Fri: 8am-5pm</li>
                     </ul>
                 </div>
@@ -289,13 +278,13 @@
         </div>
     </footer>
 
-    <!-- Dark Mode Toggle (optional) -->
+    <!-- Dark Mode Toggle -->
     <div class="dark-mode-toggle">
         <i class="fas fa-moon"></i>
     </div>
 
-    
-   <script src="script.js"></script>
+    <!-- Main Script (contains AJAX form handler) -->
+    <script src="script.js"></script>
 </body>
 </html>
 
