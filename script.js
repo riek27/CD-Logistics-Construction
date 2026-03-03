@@ -1,5 +1,4 @@
 // script.js - Complete Multi-Page JavaScript for CD Logistics
-
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
@@ -7,10 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typedTextSpan = document.getElementById('typing-text');
     if (typedTextSpan) {
         const words = ['Construction', 'Architecture', 'Logistics', 'Property Management'];
-        let i = 0;
-        let j = 0;
-        let currentWord = '';
-        let isDeleting = false;
+        let i = 0, j = 0, currentWord = '', isDeleting = false;
 
         function type() {
             if (i < words.length) {
@@ -42,20 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* ==================== MOBILE MENU TOGGLE ==================== */
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('nav ul');
+    const navMenu = document.querySelector('nav > ul');
 
-    // Helper function to close mobile menu and reset all dropdowns
     function closeMobileMenu() {
         if (navMenu && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             const icon = mobileMenuBtn.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
-
-            // Also close any open dropdowns
-            document.querySelectorAll('.dropdown.show').forEach(drop => {
-                drop.classList.remove('show');
-            });
+            document.querySelectorAll('.dropdown.show').forEach(drop => drop.classList.remove('show'));
         }
     }
 
@@ -63,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             navMenu.classList.toggle('active');
-            // Toggle icon between bars and times
             const icon = mobileMenuBtn.querySelector('i');
             if (navMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -71,14 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
-                // When closing menu, also close any open dropdowns
-                document.querySelectorAll('.dropdown.show').forEach(drop => {
-                    drop.classList.remove('show');
-                });
+                document.querySelectorAll('.dropdown.show').forEach(drop => drop.classList.remove('show'));
             }
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!navMenu.contains(event.target) && !mobileMenuBtn.contains(event.target) && navMenu.classList.contains('active')) {
                 closeMobileMenu();
@@ -86,45 +72,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* ==================== IMPROVED DROPDOWN HANDLING ==================== */
-    // Get all navigation links
-    const navLinks = document.querySelectorAll('nav ul li a');
+    /* ==================== DROPDOWN MENU HANDLING ==================== */
+    const navLinks = document.querySelectorAll('nav > ul li a');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const parentLi = this.closest('li');
-            const hasDropdown = parentLi && parentLi.querySelector('.dropdown');
+            const dropdown = parentLi ? parentLi.querySelector('.dropdown') : null;
 
-            // On mobile, if this link is the parent of a dropdown, toggle it
-            if (window.innerWidth <= 768 && hasDropdown) {
-                e.preventDefault(); // Prevent navigation
-                
+            if (window.innerWidth <= 768 && dropdown) {
+                e.preventDefault();
                 // Close other dropdowns
                 navLinks.forEach(otherLink => {
                     const otherLi = otherLink.closest('li');
-                    if (otherLi && otherLi !== parentLi) {
-                        const otherDropdown = otherLi.querySelector('.dropdown');
-                        if (otherDropdown) otherDropdown.classList.remove('show');
-                    }
+                    const otherDropdown = otherLi ? otherLi.querySelector('.dropdown') : null;
+                    if (otherDropdown && otherDropdown !== dropdown) otherDropdown.classList.remove('show');
                 });
-
-                // Toggle current dropdown
-                const dropdown = parentLi.querySelector('.dropdown');
-                if (dropdown) dropdown.classList.toggle('show');
+                dropdown.classList.toggle('show');
             } else {
-                // For all other links (including dropdown items), close mobile menu and navigate
                 closeMobileMenu();
-                // Navigation happens naturally (no preventDefault)
             }
         });
     });
 
-    // Reset dropdown classes when resizing to desktop
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            document.querySelectorAll('.dropdown.show').forEach(drop => {
-                drop.classList.remove('show');
-            });
+            document.querySelectorAll('.dropdown.show').forEach(drop => drop.classList.remove('show'));
         }
     });
 
@@ -140,21 +113,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /* ==================== SMOOTH SCROLL FOR ANCHOR LINKS ==================== */
+    /* ==================== SMOOTH SCROLL FOR ANCHORS ==================== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             if (href.length > 1) {
                 e.preventDefault();
                 const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-    /* ==================== BUTTON RIPPLE EFFECT (premium touch) ==================== */
+    /* ==================== BUTTON RIPPLE EFFECT ==================== */
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -175,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add keyframe animation for ripple if not already present
     if (!document.querySelector('#rippleStyle')) {
         const styleSheet = document.createElement("style");
         styleSheet.id = 'rippleStyle';
@@ -183,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(styleSheet);
     }
 
-    /* ==================== DARK MODE TOGGLE (optional) ==================== */
+    /* ==================== DARK MODE TOGGLE ==================== */
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', function() {
@@ -192,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.body.classList.contains('dark-mode')) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
-                // Simple dark mode styles (you can expand via CSS classes)
                 document.body.style.backgroundColor = '#1a1a1a';
                 document.body.style.color = '#f0f0f0';
             } else {
@@ -204,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* ==================== SCROLL REVEAL (fade-in on scroll) ==================== */
+    /* ==================== SCROLL REVEAL EFFECT ==================== */
     const revealElements = document.querySelectorAll(
         '.section-title, .about-content, .services-grid, .features-grid, .portfolio-grid, .cta-content'
     );
@@ -223,4 +192,28 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    /* ==================== NETLIFY FORM HANDLER WITH SUCCESS POPUP ==================== */
+    const contactForm = document.getElementById("contactForm");
+    const formSuccess = document.getElementById("formSuccess");
+
+    if (contactForm && formSuccess) {
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default
+
+            const formData = new FormData(contactForm);
+
+            fetch("/", {
+                method: "POST",
+                body: formData
+            })
+            .then(() => {
+                formSuccess.classList.add("show");  // fade-in
+                contactForm.reset();
+                setTimeout(() => formSuccess.classList.remove("show"), 5000); // fade-out after 5s
+            })
+            .catch((error) => alert("Oops! There was a problem: " + error));
+        });
+    }
+
 });
