@@ -214,3 +214,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ---------- NETLIFY FORM HANDLER (AJAX, no redirect) ----------
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Stop normal POST / redirect
+
+        // Collect form data
+        const formData = new FormData(contactForm);
+        
+        // Ensure honeypot field is included (it's already in the form)
+        // Add the form-name field (required by Netlify, already in HTML hidden input)
+
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            });
+
+            if (response.ok) {
+                // Show success message
+                formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+                formMessage.classList.remove('error');
+                formMessage.style.display = 'block';
+
+                // Reset the form
+                contactForm.reset();
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            // Show error message
+            formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
+            formMessage.classList.add('error');
+            formMessage.style.display = 'block';
+
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+                formMessage.classList.remove('error');
+            }, 5000);
+        }
+    });
+}
+
