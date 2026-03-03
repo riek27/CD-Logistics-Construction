@@ -213,30 +213,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-const contactForm = document.getElementById("contactForm");
-const formSuccess = document.getElementById("formSuccess");
-
-contactForm.addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submit
-
-    const formData = new FormData(contactForm);
-
-    fetch("/", {
-        method: "POST",
-        body: formData
-    })
-    .then(() => {
-        // Show the message with fade-in
-        formSuccess.classList.add("show");
-
-        // Clear the form fields
-        contactForm.reset();
-
-        // Hide the message after 5 seconds with fade-out
-        setTimeout(() => {
-            formSuccess.classList.remove("show");
-        }, 5000);
-    })
-    .catch((error) => alert("Oops! There was a problem: " + error));
-});
+// ---------- CONTACT FORM SUCCESS MESSAGE ----------
+// Show success message if redirected after Netlify form submission
+const urlParams = new URLSearchParams(window.location.search);
+const formSuccess = document.getElementById('formSuccess');
+if (urlParams.has('success') && urlParams.get('success') === 'true' && formSuccess) {
+    formSuccess.classList.add('show');
+    // Remove the query parameter from URL without reloading
+    window.history.replaceState({}, document.title, window.location.pathname);
+}
