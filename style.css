@@ -220,10 +220,24 @@ nav ul li a.active::after {
         position: absolute;
         top: 100%;
         left: 0;
+
+        display: block;          /* ✅ Force vertical layout */
+        min-width: 240px;
+
         opacity: 0;
         visibility: hidden;
         transform: translateY(10px);
         transition: var(--transition);
+    }
+
+    .dropdown li {
+        display: block;          /* ✅ Each item on new line */
+        width: 100%;
+    }
+
+    .dropdown li a {
+        display: block;          /* ✅ Full clickable width */
+        width: 100%;
     }
 
     /* Show only on hover of parent li */
@@ -233,7 +247,6 @@ nav ul li a.active::after {
         transform: translateY(0);
     }
 }
-
 /* ---------- MOBILE / TABLET (max-width: 768px) ---------- */
 @media (max-width: 768px) {
     .dropdown {
