@@ -841,3 +841,539 @@ body.dark-mode .footer-column p {
         height: 45px;
     }
 }
+
+/* ---------- ABOUT PAGE EXTENSIONS ---------- */
+
+/* ----- Page Header (with background & overlay) ----- */
+.page-header {
+    position: relative;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: 76px; /* fixed header height */
+    overflow: hidden;
+}
+
+.page-header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.page-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-overlay);
+    z-index: -1;
+}
+
+.page-header-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.page-header-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-header-content p {
+    font-size: 1.2rem;
+    color: var(--beige);
+}
+
+/* ----- Core Values Cards (text only) ----- */
+.services .service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: 220px;
+}
+
+.services .service-card .service-content {
+    padding: 2rem 1.5rem;
+}
+
+.services .service-card .service-content h3 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.services .service-card .service-content p {
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .services .service-card .service-content p {
+    color: #ccc;
+}
+
+/* ----- Team Expertise List ----- */
+.about-text ul {
+    margin-top: 1.5rem;
+}
+
+.about-text ul li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.about-text ul li i {
+    color: var(--gold);
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+/* ----- Alternating About Sections Spacing ----- */
+.about-content + .about-content {
+    margin-top: 5rem;
+}
+
+/* Responsive adjustments for page header */
+@media (max-width: 768px) {
+    .page-header {
+        min-height: 280px;
+        margin-top: 66px; /* smaller header on mobile */
+    }
+    .page-header-content h1 {
+        font-size: 2.2rem;
+    }
+    .page-header-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        min-height: 220px;
+    }
+    .page-header-content h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ---------- SERVICES PAGE EXTENSIONS ---------- */
+
+/* ----- Service Cards with Lists ----- */
+.service-card .service-content ul {
+    list-style: none;
+    margin: 1rem 0 1.5rem;
+    padding: 0;
+}
+
+.service-card .service-content ul li {
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px dashed var(--beige);
+    font-size: 0.95rem;
+}
+
+.service-card .service-content ul li:last-child {
+    border-bottom: none;
+}
+
+.service-card .service-content ul li::before {
+    content: "\f00c"; /* Font Awesome check circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+/* Adjust card height for uniformity */
+.service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-card .service-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Dark mode list adjustments */
+body.dark-mode .service-card .service-content ul li {
+    border-bottom-color: #444;
+}
+
+/* ----- CTA Section (with overlay and content classes) ----- */
+.cta-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+    text-align: center;
+    color: var(--white);
+}
+
+.cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 44, 44, 0.85); /* matches --charcoal with opacity */
+    z-index: 1;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--beige);
+}
+
+.cta-content .btn {
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 1rem 3rem;
+    font-weight: 600;
+    border: none;
+}
+
+.cta-content .btn:hover {
+    background: #a88a5a;
+    color: var(--white);
+}
+
+/* Responsive tweaks for CTA */
+@media (max-width: 768px) {
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+    .cta-content p {
+        font-size: 1rem;
+    }
+}
+
+/* ----- Smooth anchor scrolling (for # links) ----- */
+html {
+    scroll-padding-top: 80px; /* offset for fixed header */
+    scroll-behavior: smooth;
+}
+
+/* Ensure service cards are reachable under fixed header */
+.service-card {
+    scroll-margin-top: 90px;
+}
+
+/* ---------- PROJECTS PAGE EXTENSIONS ---------- */
+
+/* ----- Portfolio Filters ----- */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--charcoal);
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+}
+
+/* Dark mode filter buttons */
+body.dark-mode .filter-btn {
+    color: var(--beige);
+    border-color: var(--gold);
+}
+
+body.dark-mode .filter-btn:hover,
+body.dark-mode .filter-btn.active {
+    background: var(--gold);
+    color: var(--charcoal);
+}
+
+/* ----- Portfolio Grid (projects page) ----- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Hide items when filtering (used by JS) */
+.portfolio-item.hidden {
+    display: none;
+}
+
+/* Ensure overlay text is always readable */
+.portfolio-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+/* Featured project list (uses about styles, but we add bullet consistency) */
+.about-text ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-text ul li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.about-text ul li::before {
+    content: "\f00c"; /* check circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--gold);
+    font-size: 1rem;
+}
+
+/* Responsive filters */
+@media (max-width: 600px) {
+    .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+    .portfolio-filters {
+        gap: 0.5rem;
+    }
+}
+
+
+/* ---------- CONTACT PAGE EXTENSIONS ---------- */
+
+/* ----- Contact Section Layout ----- */
+.contact {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* ----- Contact Information ----- */
+.contact-info {
+    background: var(--beige);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+    border-left: 4px solid var(--gold);
+    padding-left: 1rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-detail {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.contact-detail h4 {
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+    color: var(--charcoal);
+}
+
+.contact-detail p {
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .contact-info {
+    background: #2a2a2a;
+}
+
+body.dark-mode .contact-detail h4 {
+    color: var(--beige);
+}
+
+body.dark-mode .contact-detail p {
+    color: #ccc;
+}
+
+/* ----- Contact Form ----- */
+.contact-form {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid var(--beige);
+}
+
+/* Form success message */
+.form-success {
+    display: none;
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-success.show {
+    display: block;
+}
+
+/* Style select dropdown */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232c2c2c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+/* ----- Map Section ----- */
+.map-wrapper {
+    height: 400px;
+    width: 100%;
+    background-color: var(--beige);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Get directions button */
+.map-directions {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.map-directions p {
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+}
+
+.map-directions p i {
+    color: var(--gold);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-info,
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .contact-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .contact-detail h4 {
+        font-size: 1rem;
+    }
+}
+
+
+
+
