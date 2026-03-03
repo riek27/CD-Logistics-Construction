@@ -131,7 +131,7 @@ header {
     color: var(--charcoal);
 }
 
-nav ul {
+nav > ul {
     display: flex;
     list-style: none;
 }
