@@ -87,7 +87,7 @@
                             </div>
                             <div>
                                 <h4>Email</h4>
-                                <p>info@cdconstruction.com</p>
+                                <p>info@cdconstructionltd.com</p>
                             </div>
                         </div>
                         <div class="contact-detail">
@@ -103,57 +103,83 @@
                     </div>
                     <!-- CTA Buttons for quick contact -->
                     <div style="display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;">
-                        <a href="tel:+211926295744" class="btn" style="background: var(--gold); color: var(--charcoal); display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <a href="tel:+211912616971" class="btn" style="background: var(--gold); color: var(--charcoal); display: inline-flex; align-items: center; gap: 0.5rem;">
                             <i class="fas fa-phone-alt"></i> Call Us
                         </a>
-                        <a href="mailto:info@cdconstruction.com" class="btn" style="background: var(--charcoal); color: var(--white); display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <a href="mailto:info@cdconstructionltd.com" class="btn" style="background: var(--charcoal); color: var(--white); display: inline-flex; align-items: center; gap: 0.5rem;">
                             <i class="fas fa-envelope"></i> Send Email
                         </a>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                       <a href="https://www.facebook.com/profile.php?id=100065234742107" 
+                   class="social-link" 
+                    target="_blank" 
+                rel="noopener noreferrer">
+                 <i class="fab fa-facebook-f"></i>
+                 </a>
+                        <a href="https://wa.me/211912616971" 
+                      class="social-link" 
+                  target="_blank" 
+               rel="noopener noreferrer">
+               <i class="fab fa-whatsapp"></i>
+                   </a>
+                       
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="Your Phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Service Interest</label>
-                            <select id="service" class="form-control">
-                                <option value="">Select a service</option>
-                                <option value="construction">Construction Works</option>
-                                <option value="architectural">Architectural & Engineering Design</option>
-                                <option value="logistics">Logistics Services</option>
-                                <option value="renovation">Renovation & Remodeling</option>
-                                <option value="interior">Interior Decoration</option>
-                                <option value="maintenance">Maintenance Services</option>
-                                <option value="property">Property Management</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message *</label>
-                            <textarea id="message" class="form-control" placeholder="Tell us about your project or inquiry" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+    <!-- Hidden input for Netlify bot detection -->
+    <input type="hidden" name="form-name" value="contact">
+    <p class="hidden">
+      <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+    </p>
+
+    <div class="form-group">
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your Phone">
+    </div>
+
+    <div class="form-group">
+      <label for="service">Service Interest</label>
+      <select id="service" name="service" class="form-control">
+        <option value="">Select a service</option>
+        <option value="construction">Construction Works</option>
+        <option value="architectural">Architectural & Engineering Design</option>
+        <option value="logistics">Logistics Services</option>
+        <option value="renovation">Renovation & Remodeling</option>
+        <option value="interior">Interior Decoration</option>
+        <option value="maintenance">Maintenance Services</option>
+        <option value="property">Property Management</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Your Message *</label>
+      <textarea id="message" name="message" class="form-control" placeholder="Tell us about your project or inquiry" rows="5" required></textarea>
+    </div>
+
+    <button type="submit" class="btn">Send Message</button>
+
+    <!-- Success message -->
+    <div id="formSuccess" class="form-success">
+      Thank you! Your message has been sent.
+    </div>
+  </form>
+</div>
+</section>
+                
+                
 
     <!-- Map Section (Suk Libya, Juba) -->
     <section class="about" style="padding: 0;">
@@ -191,7 +217,7 @@
         </div>
     </section>
 
-    <!-- Footer (CD Logistics) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -199,9 +225,19 @@
                     <h3>CD Logistics <span style="color: var(--gold);">Construction</span></h3>
                     <p>Engineering South Sudan’s tomorrow — with integrity, safety and excellence.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100065234742107" 
+                   class="social-link" 
+                    target="_blank" 
+                rel="noopener noreferrer">
+                 <i class="fab fa-facebook-f"></i>
+                 </a>
+                        <a href="https://wa.me/211912616971" 
+                      class="social-link" 
+                  target="_blank" 
+               rel="noopener noreferrer">
+               <i class="fab fa-whatsapp"></i>
+                   </a>
+                       
                     </div>
                 </div>
                 <div class="footer-column">
@@ -228,8 +264,16 @@
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-map-marker-alt"></i> Suk Libya next to Charter Bank, Juba, South Sudan</li>
-                        <li><i class="fas fa-phone"></i> +211 926 295 744  |  +211 912 616 971</li>
-                        <li><i class="fas fa-envelope"></i> info@cdconstruction.com</li>
+                       <li>
+  <i class="fas fa-phone"></i> 
+  <a href="tel:+211926295744">+211 926 295 744</a>  |  
+  <a href="tel:+211912616971">+211 912 616 971</a>
+</li>
+
+<li>
+  <i class="fas fa-envelope"></i> 
+  <a href="mailto:info@cdconstructionltd.com">info@cdconstructionltd.com</a>
+</li>
                         <li><i class="fas fa-clock"></i> Mon-Fri: 8am-5pm</li>
                     </ul>
                 </div>
@@ -245,14 +289,8 @@
         <i class="fas fa-moon"></i>
     </div>
 
-    <script src="script.js"></script>
-    <script>
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you shortly.');
-            this.reset();
-        });
-    </script>
+    
+   <script src="script.js"></script>
 </body>
 </html>
+
