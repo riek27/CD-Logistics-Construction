@@ -1,68 +1,24 @@
-// script.js – CD Logistics – all interactions
+/*
+  script.js - Complete interactivity for CD Logistics
+  - Typing effect in hero
+  - Mobile menu toggle with dropdown accordion
+  - Dark mode toggle
+  - Active link highlighting
+  - Smooth scroll for anchor links
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
-    // ========== MOBILE MENU TOGGLE ==========
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const nav = document.querySelector('nav');
-    const header = document.querySelector('header');
+    'use strict';
 
-    if (mobileBtn) {
-        mobileBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            nav.classList.toggle('active');
-            // Change icon between bars and times
-            const icon = this.querySelector('i');
-            if (nav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-    }
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (nav && nav.classList.contains('active') && !nav.contains(e.target) && !mobileBtn.contains(e.target)) {
-            nav.classList.remove('active');
-            const icon = mobileBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    // ========== DROPDOWN ON MOBILE ==========
-    const dropdownParents = document.querySelectorAll('nav ul li > a + ul.dropdown');
-    dropdownParents.forEach(dropdown => {
-        const parentLi = dropdown.parentElement;
-        const link = parentLi.querySelector('a');
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdown.classList.toggle('show');
-                // rotate chevron icon if exists
-                const icon = this.querySelector('i');
-                if (icon) {
-                    if (dropdown.classList.contains('show')) {
-                        icon.style.transform = 'rotate(180deg)';
-                    } else {
-                        icon.style.transform = 'rotate(0)';
-                    }
-                }
-            }
-        });
-    });
-
-    // ========== TYPING EFFECT IN HERO ==========
+    // ---------- TYPING EFFECT ----------
     const typingElement = document.getElementById('typing-text');
     if (typingElement) {
         const phrases = [
-            'Construction & Engineering',
-            'General Trading',
-            'Logistics Services',
-            'Renovation & Remodeling',
-            'Interior Decoration'
+            'Construction Excellence',
+            'Logistics Solutions',
+            'Design Innovation',
+            'Your Trusted Partner',
+            'Building South Sudan'
         ];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -71,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function type() {
             const currentPhrase = phrases[phraseIndex];
+            
             if (isDeleting) {
                 currentText = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
@@ -83,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
-                setTimeout(type, 2000); // pause before deleting
+                setTimeout(type, 2000); // pause at end
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
@@ -93,92 +50,165 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(type, speed);
             }
         }
+
         type();
     }
 
-    // ========== DARK MODE TOGGLE ==========
-    const darkToggle = document.querySelector('.dark-mode-toggle');
-    if (darkToggle) {
-        darkToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark');
-            const icon = this.querySelector('i');
-            if (document.body.classList.contains('dark')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+    // ---------- MOBILE MENU TOGGLE ----------
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('nav');
+    const header = document.querySelector('header');
+
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nav.classList.toggle('nav-open');
+            // Change icon (assuming font-awesome)
+            const icon = menuBtn.querySelector('i');
+            if (icon) {
+                if (nav.classList.contains('nav-open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!header.contains(event.target) && nav.classList.contains('nav-open')) {
+                nav.classList.remove('nav-open');
+                const icon = menuBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             }
         });
     }
 
-    // ========== ACTIVE LINK HIGHLIGHT ==========
-    const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
+    // ---------- DROPDOWN HANDLING (MOBILE) ----------
+    function setupMobileDropdowns() {
+        const isMobile = window.innerWidth <= 992;
+        const dropdownItems = document.querySelectorAll('nav ul li:has(ul.dropdown)');
+
+        dropdownItems.forEach((item) => {
+            // Remove any existing toggle buttons to avoid duplicates
+            const existingToggle = item.querySelector('.dropdown-toggle');
+            if (existingToggle) existingToggle.remove();
+
+            if (isMobile) {
+                // Create toggle button
+                const link = item.querySelector('a');
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'dropdown-toggle';
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                toggleBtn.setAttribute('aria-label', 'Toggle dropdown');
+                
+                // Insert after link
+                link.parentNode.insertBefore(toggleBtn, link.nextSibling);
+
+                // Toggle dropdown on button click
+                toggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    item.classList.toggle('dropdown-open');
+                });
+
+                // Ensure link still works
+                link.addEventListener('click', function(e) {
+                    // Allow normal navigation
+                });
+            } else {
+                item.classList.remove('dropdown-open'); // reset
+            }
+        });
+    }
+
+    // Initial setup
+    setupMobileDropdowns();
+
+    // Re-run on resize
+    window.addEventListener('resize', function() {
+        setupMobileDropdowns();
+        // Also close mobile nav if resizing to desktop
+        if (window.innerWidth > 992 && nav.classList.contains('nav-open')) {
+            nav.classList.remove('nav-open');
+            const icon = menuBtn?.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+
+    // ---------- DARK MODE TOGGLE ----------
+    const darkToggle = document.querySelector('.dark-mode-toggle');
+    if (darkToggle) {
+        // Check localStorage
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        darkToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    }
+
+    // ---------- ACTIVE LINK HIGHLIGHT ----------
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('nav ul li a');
+
     navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentLocation) {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
         }
     });
 
-    // ========== SMOOTH SCROLL FOR ANCHOR LINKS (if any) ==========
+    // ---------- SMOOTH SCROLL FOR ANCHOR LINKS (services page) ----------
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            const target = document.querySelector(targetId);
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
 
-    // ========== STICKY HEADER SHADOW ON SCROLL ==========
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-        } else {
-            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-        }
-    });
-
-    // ========== RESET MOBILE MENU ON WINDOW RESIZE (above 768px) ==========
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && nav.classList.contains('active')) {
-            nav.classList.remove('active');
-            const icon = mobileBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-        // Also close all open mobile dropdowns
-        document.querySelectorAll('.dropdown.show').forEach(d => d.classList.remove('show'));
-    });
-});
-    /* ==================== NETLIFY FORM HANDLER WITH SUCCESS POPUP ==================== */
-    const contactForm = document.getElementById("contactForm");
-    const formSuccess = document.getElementById("formSuccess");
-
-    if (contactForm && formSuccess) {
-        contactForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default
-
-            const formData = new FormData(contactForm);
-
-            fetch("/", {
-                method: "POST",
-                body: formData
-            })
-            .then(() => {
-                formSuccess.classList.add("show");  // fade-in
-                contactForm.reset();
-                setTimeout(() => formSuccess.classList.remove("show"), 5000); // fade-out after 5s
-            })
-            .catch((error) => alert("Oops! There was a problem: " + error));
+    // ---------- CLOSE MOBILE MENU ON LINK CLICK ----------
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 992 && nav.classList.contains('nav-open')) {
+                nav.classList.remove('nav-open');
+                const icon = menuBtn?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
         });
-    }
-
+    });
 });
