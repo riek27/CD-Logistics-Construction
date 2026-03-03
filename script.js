@@ -1,19 +1,19 @@
-// script.js - Fixed & Enhanced Multi-Page JavaScript for CD Logistics
+// script.js - Ultimate Robust Version for CD Logistics
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    /* -------------------- GLOBAL VARIABLES -------------------- */
+    // ========== DOM ELEMENTS ==========
     const header = document.querySelector('header');
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const nav = document.querySelector('nav'); // The <nav> element itself
-    const navLinks = document.querySelectorAll('nav ul li a');
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const nav = document.querySelector('nav');
     const typingElement = document.getElementById('typing-text');
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const navLinks = document.querySelectorAll('nav ul li a');
 
-    // Helper to detect mobile width (matches CSS breakpoint)
+    // Helper: check if mobile view
     const isMobile = () => window.innerWidth <= 768;
 
-    /* -------------------- TYPING ANIMATION (index.html only) -------------------- */
+    // ========== TYPING ANIMATION (only on homepage) ==========
     if (typingElement) {
         const words = ['Construction', 'Architecture', 'Logistics', 'Property Management'];
         let wordIndex = 0;
@@ -36,16 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
             typingElement.textContent = displayText;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                // Finished typing, pause then delete
                 isDeleting = true;
                 timeout = setTimeout(typeEffect, 1500);
             } else if (isDeleting && charIndex === 0) {
-                // Finished deleting, move to next word
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
                 timeout = setTimeout(typeEffect, 400);
             } else {
-                // Continue typing/deleting
                 const speed = isDeleting ? 70 : 120;
                 timeout = setTimeout(typeEffect, speed);
             }
@@ -53,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
         typeEffect();
     }
 
-    /* -------------------- MOBILE MENU TOGGLE -------------------- */
+    // ========== MOBILE MENU TOGGLE ==========
     if (mobileMenuBtn && nav) {
         // Toggle menu on button click
-        mobileMenuBtn.addEventListener('click', (e) => {
+        mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             nav.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -66,28 +63,25 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
-                // Close any open dropdowns when closing menu
+                // Close any open dropdowns when menu closes
                 document.querySelectorAll('.dropdown.show').forEach(drop => drop.classList.remove('show'));
             }
         });
 
         // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (nav.classList.contains('active') && 
-                !nav.contains(e.target) && 
-                !mobileMenuBtn.contains(e.target)) {
+        document.addEventListener('click', function(e) {
+            if (nav.classList.contains('active') && !nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
                 closeMobileMenu();
             }
         });
 
-        // Close menu when a navigation link (not dropdown toggle) is clicked
+        // Close menu when a navigation link (without dropdown) is clicked
         nav.querySelectorAll('ul > li > a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                // If the clicked link has a dropdown, we handle it separately; otherwise close menu
-                const parentLi = link.closest('li');
+            link.addEventListener('click', function(e) {
+                // If this link is a dropdown toggle (has sibling dropdown), don't close menu yet
+                const parentLi = this.closest('li');
                 if (parentLi && parentLi.querySelector('.dropdown')) {
-                    // Dropdown toggle – handled separately
-                    return;
+                    return; // handled separately
                 }
                 if (isMobile()) {
                     closeMobileMenu();
@@ -106,22 +100,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.classList.add('fa-bars');
             }
         }
-        // Also close any open dropdowns
         document.querySelectorAll('.dropdown.show').forEach(drop => drop.classList.remove('show'));
     }
 
-    /* -------------------- DROPDOWN HANDLING (mobile click toggle) -------------------- */
-    const dropdownParents = document.querySelectorAll('nav ul li:has(ul.dropdown)');
+    // ========== DROPDOWN HANDLING (mobile click toggles) ==========
+    // Get all list items that contain a dropdown (without using :has)
+    const allListItems = document.querySelectorAll('nav ul li');
+    const dropdownParents = Array.from(allListItems).filter(li => li.querySelector('.dropdown'));
+
     dropdownParents.forEach(parent => {
         const link = parent.querySelector('a');
         const dropdown = parent.querySelector('.dropdown');
 
         if (!link || !dropdown) return;
 
-        link.addEventListener('click', (e) => {
-            // Only handle on mobile
+        link.addEventListener('click', function(e) {
             if (isMobile()) {
-                e.preventDefault(); // Prevent navigation to services.html
+                e.preventDefault(); // prevent navigation
                 e.stopPropagation();
 
                 // Close other dropdowns
@@ -132,24 +127,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Toggle current dropdown
+                // Toggle this dropdown
                 dropdown.classList.toggle('show');
             }
         });
 
-        // When a dropdown link is clicked, close mobile menu (after navigation)
+        // When a dropdown item is clicked, close the mobile menu (after navigation)
         dropdown.querySelectorAll('a').forEach(itemLink => {
-            itemLink.addEventListener('click', () => {
+            itemLink.addEventListener('click', function() {
                 if (isMobile()) {
-                    // Small delay to allow navigation, then close menu
-                    setTimeout(closeMobileMenu, 100);
+                    // Small delay to allow navigation
+                    setTimeout(closeMobileMenu, 150);
                 }
             });
         });
     });
 
-    // Close all dropdowns when resizing from mobile to desktop
-    window.addEventListener('resize', () => {
+    // Close dropdowns when resizing from mobile to desktop
+    window.addEventListener('resize', function() {
         if (!isMobile()) {
             document.querySelectorAll('.dropdown.show').forEach(drop => drop.classList.remove('show'));
             if (nav) nav.classList.remove('active');
@@ -163,9 +158,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /* -------------------- NAVBAR SCROLL EFFECT -------------------- */
+    // ========== NAVBAR SCROLL EFFECT ==========
     if (header) {
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
                 header.style.backgroundColor = '#ffffff';
                 header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
@@ -176,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* -------------------- SMOOTH SCROLL FOR HASH LINKS -------------------- */
+    // ========== SMOOTH SCROLL FOR HASH LINKS ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -185,13 +180,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // If mobile menu is open, close it
                 if (isMobile()) closeMobileMenu();
             }
         });
     });
 
-    /* -------------------- SET ACTIVE NAV LINK BASED ON CURRENT PAGE -------------------- */
+    // ========== ACTIVE NAV LINK ==========
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
@@ -202,9 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /* -------------------- DARK MODE TOGGLE -------------------- */
+    // ========== DARK MODE TOGGLE ==========
     if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', () => {
+        darkModeToggle.addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             const icon = darkModeToggle.querySelector('i');
             if (document.body.classList.contains('dark-mode')) {
@@ -217,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* -------------------- SCROLL REVEAL ANIMATIONS -------------------- */
+    // ========== SCROLL REVEAL ANIMATIONS ==========
     const revealElements = document.querySelectorAll(
         '.section-title, .about-content, .services-grid, .features-grid, .portfolio-grid, .cta-content'
     );
@@ -227,23 +221,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target); // animate only once
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
 
         revealElements.forEach(el => {
-            // Only set initial styles if not already set by CSS
-            if (!el.style.opacity) {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            }
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
     }
 
-    /* -------------------- HANDLE PAGE LOAD WITH HASH IN URL -------------------- */
+    // ========== HANDLE HASH ON PAGE LOAD ==========
     if (window.location.hash) {
         setTimeout(() => {
             const target = document.querySelector(window.location.hash);
@@ -253,7 +244,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
 });
-
     /* ==================== NETLIFY FORM HANDLER WITH SUCCESS POPUP ==================== */
     const contactForm = document.getElementById("contactForm");
     const formSuccess = document.getElementById("formSuccess");
