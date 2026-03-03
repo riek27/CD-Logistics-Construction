@@ -1374,27 +1374,26 @@ select.form-control {
     }
 }
 
+/* ==================== NETLIFY SUCCESS MESSAGE ==================== */
+
 .form-success {
-    display: block;               /* Keep it in flow for animation */
-    background-color: #28a745;    /* Green */
-    color: #fff;
-    padding: 15px 20px;
-    margin-top: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    
-    opacity: 0;                   /* Start hidden */
-    transform: translateY(-10px); /* Slight upward shift */
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    pointer-events: none;          /* Prevent clicks when hidden */
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #28a745;
+    color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 .form-success.show {
-    opacity: 1;                    /* Fade in */
-    transform: translateY(0);      /* Move to natural position */
-    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
 }
-
-
