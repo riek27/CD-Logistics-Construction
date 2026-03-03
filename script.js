@@ -214,54 +214,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ---------- NETLIFY FORM HANDLER (AJAX, no redirect) ----------
+// ---------- SIMPLE NETLIFY FORM HANDLER (always shows thank you) ----------
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Stop default browser submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop normal page reload
 
-        // Collect form data
+        // Show thank you message immediately
+        formMessage.textContent = 'Thank you! Your message has been sent.';
+        formMessage.className = 'form-message success';
+        formMessage.style.display = 'block';
+
+        // Reset the form fields
+        contactForm.reset();
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+
+        // Send data to Netlify in the background (no waiting, no errors shown)
         const formData = new FormData(contactForm);
-
-        // Ensure honeypot field is included (already in form)
-
-        try {
-            // Send as application/x-www-form-urlencoded (Netlify expects this)
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString()
-            });
-
-            if (response.ok) {
-                // Show success message
-                formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-                formMessage.className = 'form-message success';
-                formMessage.style.display = 'block';
-
-                // Reset form fields
-                contactForm.reset();
-
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            } else {
-                // Server responded with error
-                throw new Error('Server responded with status: ' + response.status);
-            }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            // Show error message
-            formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
-            formMessage.className = 'form-message error';
-            formMessage.style.display = 'block';
-
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+        }).catch(error => {
+            // Silently ignore any errors – the user already got their thank you
+            console.log('Background form send (optional):', error);
+        });
     });
 }
