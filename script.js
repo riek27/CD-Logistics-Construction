@@ -214,36 +214,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ---------- SIMPLE NETLIFY FORM HANDLER (always shows thank you) ----------
+// ---------- NETLIFY AJAX FORM HANDLER ----------
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Stop normal page reload
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop normal page reload
 
-        // Show thank you message immediately
-        formMessage.textContent = 'Thank you! Your message has been sent.';
+    // Check honeypot (spam bot trap)
+    const botField = contactForm.querySelector('input[name="bot-field"]').value;
+    if (botField) {
+      console.log('Spam detected! Submission ignored.');
+      return;
+    }
+
+    // Prepare form data including 'form-name'
+    const formData = new FormData(contactForm);
+    formData.append('form-name', contactForm.getAttribute('name'));
+
+    // Convert FormData to URL-encoded string
+    const body = new URLSearchParams(formData).toString();
+
+    // Send via POST to Netlify
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    })
+    .then(response => {
+      if (response.ok) {
+        // Success
+        formMessage.textContent = 'Thank you! Your message has been sent successfully.';
         formMessage.className = 'form-message success';
         formMessage.style.display = 'block';
-
-        // Reset the form fields
         contactForm.reset();
 
-        // Hide message after 5 seconds
+        // Hide after 5 seconds
         setTimeout(() => {
-            formMessage.style.display = 'none';
+          formMessage.style.display = 'none';
         }, 5000);
-
-        // Send data to Netlify in the background (no waiting, no errors shown)
-        const formData = new FormData(contactForm);
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-        }).catch(error => {
-            // Silently ignore any errors – the user already got their thank you
-            console.log('Background form send (optional):', error);
-        });
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .catch(error => {
+      console.error('Form submission error:', error);
+      formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+      formMessage.className = 'form-message error';
+      formMessage.style.display = 'block';
     });
+  });
 }
+
+
+
+
+
